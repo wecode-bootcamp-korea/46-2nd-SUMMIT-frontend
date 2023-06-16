@@ -7,6 +7,9 @@ const GlobalStyle = createGlobalStyle`
 
   * {
     box-sizing: border-box;
+     font-family: 'Noto Sans KR', sans-serif;
+  }
+  body{
     font-family: 'Noto Sans KR', sans-serif;
   }
 `;
