@@ -8,22 +8,22 @@ import ShowList from './pages/ShowList/ShowList.jsx';
 import Reservation from './pages/Reservation/Reservation.jsx';
 import Checkout from './pages/Checkout/Checkout.jsx';
 import Community from './pages/Community/Community.jsx';
-import Footer from './components/Footer/Footer.jsx';
+import Container from './Container.js';
 
 const Router = () => {
   return (
     <BrowserRouter>
-      <Nav />
       <Routes>
-        <Route path="/" element={<Main />} />
+        <Route element={<Container />}>
+          <Route path="/" element={<Main />} />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/community" element={<Community />} />
+          <Route path="/reservation" element={<Reservation />} />
+          <Route path="/showDetail" element={<ShowDetail />} />
+          <Route path="/showList" element={<ShowList />} />
+        </Route>
         <Route path="/login" element={<Login />} />
-        <Route path="/checkout" element={<Checkout />} />
-        <Route path="/community/:id" element={<Community />} />
-        <Route path="/reservation" element={<Reservation />} />
-        <Route path="/showDetail" element={<ShowDetail />} />
-        <Route path="/showList" element={<ShowList />} />
       </Routes>
-      <Footer />
     </BrowserRouter>
   );
 };
