@@ -1,17 +1,20 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  position: relative;
   display: grid;
   min-height: 100%;
   height: auto;
+  min-width: 1300px;
+  width: 100%;
 `;
 
 export const FooterWrap = styled.div`
+  position: relative;
   padding: 30px;
   min-width: 100%;
   height: 320px;
   background-color: #efefef;
-  position: relative;
 `;
 
 export const Info = styled.div`

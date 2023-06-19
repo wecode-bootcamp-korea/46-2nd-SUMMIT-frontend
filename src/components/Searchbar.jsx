@@ -1,22 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { BsSearch } from 'react-icons/bs';
 
-const SearchBar = () => {
+const SearchBar = ({ show }) => {
   return (
-    <Searching>
+    <Searchbarsearching show={show}>
       <TextInput type="text" placeholder="검색" />
-
       <ClickButton type="button">
         <BsSearch />
       </ClickButton>
-    </Searching>
+    </Searchbarsearching>
   );
 };
 
 export default SearchBar;
 
-const Searching = styled.div`
+const Searchbarsearching = styled.div`
   padding: 10px;
   margin-left: 200px;
   display: flex;
@@ -26,6 +25,7 @@ const Searching = styled.div`
   height: 40px;
   margin: 20px auto;
   border: 1px solid #bdc1c6;
+  visibility: ${({ show }) => (show ? 'visible' : 'hidden')};
 `;
 
 const TextInput = styled.input`
