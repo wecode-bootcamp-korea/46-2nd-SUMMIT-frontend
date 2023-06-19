@@ -1,0 +1,22 @@
+[
+  {
+    "id": "1",
+    "seat_grade": "VIP석",
+    "price": "170000"
+  },
+  {
+    "id": "2",
+    "seat_grade": "R석",
+    "price": "140000"
+  },
+  {
+    "id": "3",
+    "seat_grade": "A석",
+    "price": "110000"
+  },
+  {
+    "id": "4",
+    "seat_grade": "S석",
+    "price": "230000"
+  }
+]
