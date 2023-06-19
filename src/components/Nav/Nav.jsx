@@ -20,7 +20,7 @@ import {
   WishListLength,
   WishListContainer,
 } from './Nav';
-import Logo from '../../assets/Logodmo.png';
+import Logo from '../../assets/Logodemo.png';
 import SearchBar from '../Searchbar';
 import { BsFillPersonFill } from 'react-icons/bs';
 import { AiOutlineHeart } from 'react-icons/ai';
@@ -136,10 +136,7 @@ const Nav = () => {
         {isLoggedIn ? (
           <MypageButton>
             {isCreator ? (
-              <>
-                <ContentsWriter href="##">공연등록</ContentsWriter>
-                <BsFillPersonFill onClick={handleUserClick} />
-              </>
+              <ContentsWriter href="##">공연등록</ContentsWriter>
             ) : (
               <WishListContainer>
                 <AiOutlineHeart onClick={handleSecondModalClick} />
