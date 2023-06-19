@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { BsSearch } from 'react-icons/bs';
 
@@ -6,6 +6,7 @@ const SearchBar = () => {
   return (
     <Searching>
       <TextInput type="text" placeholder="검색" />
+
       <ClickButton type="button">
         <BsSearch />
       </ClickButton>
