@@ -2,12 +2,13 @@ import styled from 'styled-components';
 
 export const Navbar = styled.nav`
   position: relative;
-  background-color: white;
+  background-image: linear-gradient(to right, black, #41474b);
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding: 30px;
+  min-width: 1300px;
   width: 100%;
+  border-bottom: 0.1px solid lightgray;
+  align-items: center;
 `;
 
 export const ImgLogo = styled.img`
@@ -16,67 +17,47 @@ export const ImgLogo = styled.img`
 `;
 
 export const NavLinks = styled.div`
+  min-width: 700px;
   position: absolute;
   left: 300px;
   display: flex;
-  margin-left: 40px;
+  flex-direction: row;
+  justify-content: center;
   align-items: center;
-  margin-right: 40px;
-  background-color: white;
-`;
-
-export const NavLinkItem = styled.div`
-  margin-left: 30px;
-  margin-right: 30px;
 `;
 
 export const NavLinkItemRight = styled.div`
   position: relative;
-
-  height: 60px;
-  right: 0;
-`;
-
-export const MypageButton = styled.div`
   display: flex;
   margin-left: 40px;
   margin-right: 20px;
   width: 100px;
   height: 60px;
-  background-color: white;
-  justify-content: space-between;
+  justify-content: flex-end;
   font-size: 40px;
   align-items: center;
+  width: 200px;
+`;
+
+export const MypageButton = styled.div`
+  display: flex;
+  margin-left: 70px;
+  margin-right: 20px;
+  width: 100px;
+  height: 60px;
+  justify-content: flex-end;
+  font-size: 40px;
+  align-items: center;
+  width: 200px;
+  color: white;
 `;
 
 export const NavLink = styled.span`
   font-size: 16px;
-  color: black;
+  color: white;
   text-decoration: none;
-
-  &:hover {
-    color: #ff6b6b;
-  }
-`;
-
-export const LinkText = styled.p`
-  color: black;
-  text-decoration: none;
-  margin-left: 30px;
   margin-right: 50px;
-  position: relative;
-  right: 100px;
-  position: absolute;
-
-  &::before {
-    content: '';
-    bottom: -2px;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background-color: transparent;
-    transition: background-color 0.3s ease-in-out;
-  }
+  display: flex;
 
   &:hover {
     color: #ff6b6b;
@@ -94,7 +75,6 @@ export const ChangeMaker = styled.a`
   width: 100%;
   height: 50%;
   top: 0;
-  background-color: white;
 `;
 
 export const LogoutButton = styled.a`
@@ -106,9 +86,8 @@ export const LogoutButton = styled.a`
   position: absolute;
   justify-content: center;
   width: 100%;
-  height: 30%;
+  height: 48%;
   bottom: 0;
-  background-color: #f5f5f5;
   color: gray;
 `;
 
@@ -117,7 +96,7 @@ export const UserModal = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  top: 90px;
+  top: 81px;
   right: 30px;
   width: 220px;
   height: 120px;
@@ -129,8 +108,9 @@ export const UserModal = styled.div`
 export const SecondModal = styled.div`
   position: absolute;
   display: flex;
-  flex-direction: column;
-  top: 90px;
+  justify-content: center;
+  align-items: center;
+  top: 81px;
   right: 30px;
   width: 300px;
   border: 1px solid lightgray;
@@ -169,8 +149,7 @@ export const ModalClose = styled.span`
 export const ContentsWriter = styled.a`
   display: flex;
   position: absolute;
-  margin-right: 40px;
-  right: 200px;
+  margin-right: 60px;
   color: black;
   text-decoration: none;
   align-items: center;

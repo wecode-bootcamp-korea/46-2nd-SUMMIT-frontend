@@ -5,11 +5,9 @@ import {
   Navbar,
   ImgLogo,
   NavLinks,
-  NavLinkItem,
   NavLinkItemRight,
   MypageButton,
   NavLink,
-  LinkText,
   UserModal,
   SecondModal,
   ModalClose,
@@ -109,11 +107,15 @@ const Nav = () => {
   };
 
   const handleCreatorMode = () => {
-    setIsCreator(true);
+    setIsCreator(!isCreator);
   };
 
   const isCommunityPage = location.pathname === '/community';
   const isShowListPage = location.pathname === '/showList';
+
+  const shouldShowSearchBar = !(isCommunityPage || isShowListPage);
+
+  const changeMakerText = isCreator ? '유저 전환' : '관리자 전환';
 
   return (
     <Navbar>
@@ -121,42 +123,40 @@ const Nav = () => {
         <ImgLogo src={Logo} />
       </Link>
       <NavLinks>
-        <NavLinkItem>
-          <Link to="/showList">
-            <NavLink>공연찾기</NavLink>
-          </Link>
-        </NavLinkItem>
-        <NavLinkItem>
-          <Link to="/community/total">
-            <NavLink>커뮤니티</NavLink>
-          </Link>
-        </NavLinkItem>
+        <Link to="/showList">
+          <NavLink>공연찾기</NavLink>
+        </Link>
+        <Link to="/community/total">
+          <NavLink>커뮤니티</NavLink>
+        </Link>
+        <SearchBar show={shouldShowSearchBar} />
       </NavLinks>
-      {isCommunityPage || isShowListPage ? null : <SearchBar />}
-      {isLoggedIn ? (
-        <NavLinkItemRight>
+      <NavLinkItemRight>
+        {isLoggedIn ? (
           <MypageButton>
             {isCreator ? (
-              <ContentsWriter href="##">공연등록</ContentsWriter>
+              <>
+                <ContentsWriter href="##">공연등록</ContentsWriter>
+                <BsFillPersonFill onClick={handleUserClick} />
+              </>
             ) : (
               <WishListContainer>
                 <AiOutlineHeart onClick={handleSecondModalClick} />
                 <WishListLength>{wishListData.length}</WishListLength>
               </WishListContainer>
             )}
-
             <BsFillPersonFill onClick={handleUserClick} />
           </MypageButton>
-        </NavLinkItemRight>
-      ) : (
-        <Link to="/login">
-          <LinkText>로그인</LinkText>
-        </Link>
-      )}
+        ) : (
+          <Link to="/login">
+            <NavLink>로그인</NavLink>
+          </Link>
+        )}
+      </NavLinkItemRight>
       {showModal && (
         <UserModal>
           <ChangeMaker href="##" onClick={handleCreatorMode}>
-            제작자 전환
+            {changeMakerText}
           </ChangeMaker>
           <UnderLines />
           <LogoutButton href="/" onClick={handleLogout}>
@@ -184,6 +184,7 @@ const Nav = () => {
                 </Link>
               </div>
             ))}
+          <ModalClose onClick={closeSecondModal} />
         </SecondModal>
       )}
     </Navbar>

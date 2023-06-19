@@ -3,7 +3,6 @@ import { lighten, darken } from 'polished';
 import { AiFillCheckCircle, AiOutlineCheckCircle } from 'react-icons/ai';
 export const Container = styled.div`
   width: 100vw;
-  height: 100vh;
   margin: 0 auto;
 `;
 
