@@ -51,11 +51,16 @@
     ]
   },
   "devDependencies": {
+    "eslint": "^8.43.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.2.1",
     "prettier": "^2.8.8",
     "stylelint": "^15.7.0",
     "stylelint-config-prettier-scss": "^1.0.0",
     "stylelint-scss": "^5.0.1"
-  }
+  },
+  "description": "Product Manager : 조수진\r Project Manager : 장건웅\r Team Mates : 옥준우, 김상우, 이관용, 백지율",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC"
 }
