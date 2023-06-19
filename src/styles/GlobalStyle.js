@@ -13,10 +13,14 @@ const GlobalStyle = createGlobalStyle`
   body{
     font-family: 'Noto Sans KR', sans-serif ;
   }
-  align-self: start;
+
   a{
     text-decoration: none;
     color: black;
+  }
+
+  li{
+    list-style: none;
   }
 `;
 
