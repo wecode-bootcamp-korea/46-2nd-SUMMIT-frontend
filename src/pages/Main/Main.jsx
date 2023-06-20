@@ -1,7 +1,13 @@
 import React from 'react';
+import Footer from '../../components/Footer/Footer';
 
 const Main = () => {
-  return <div>Main</div>;
+  return (
+    <div>
+      <div>Main</div>
+      <Footer />
+    </div>
+  );
 };
 
 export default Main;
