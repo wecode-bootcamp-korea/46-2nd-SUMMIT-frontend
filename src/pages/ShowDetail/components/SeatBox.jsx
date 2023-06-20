@@ -6,17 +6,23 @@ import {
   SeatGradeWrap,
   SeatGrade,
   SeatInfo,
-  DropButton,
-  DropItem,
-  DropMenu,
-  DropWrapper,
   CheckImg,
   CheckedImg,
+  SelectTicket,
+  OptionTicket,
+  InfoWrap,
 } from './SeatBox';
 
-const SeatBox = ({ grade, price }) => {
+const SeatBox = ({ seat }) => {
   const [isSeatOpen, setIsSeatOpen] = useState(false);
   const [isCountOpen, setIsCountOpen] = useState(false);
+
+  const { id, age, grade, price, runningTime, seatStatus, theater, ticket } =
+    seat;
+
+  console.log(seat);
+
+  // console.log(id, age, grade, price, runningTime, seatStatus, theater, ticket);
 
   const handleSeatOnclick = () => {
     setIsSeatOpen(prev => !prev);
@@ -34,18 +40,20 @@ const SeatBox = ({ grade, price }) => {
             {isSeatOpen ? <CheckImg /> : <CheckedImg />}
             <SeatGrade>{grade}</SeatGrade>
           </SeatGradeWrap>
-          <SeatInfo isOpen={isSeatOpen}>
-            {price}
-            <br />
-            <DropWrapper>
-              <DropButton onClick={handleCountOnClick}>매수</DropButton>
-              <DropMenu isOpen={isCountOpen}>
-                {COUNT_LIST.map(el => (
-                  <DropItem key={el.id}>{el.count}</DropItem>
+          <InfoWrap>
+            <SeatInfo isOpen={isSeatOpen}>{`가격: ${parseInt(
+              price
+            ).toLocaleString()}원`}</SeatInfo>
+            {isSeatOpen && (
+              <SelectTicket onClick={handleCountOnClick}>
+                {COUNT_LIST.map(item => (
+                  <OptionTicket key={item.id} value={item.count}>
+                    {`매수: ${item.count}매`}
+                  </OptionTicket>
                 ))}
-              </DropMenu>
-            </DropWrapper>
-          </SeatInfo>
+              </SelectTicket>
+            )}
+          </InfoWrap>
         </SeatInfoWrap>
       </SeatsWrap>
     </SeatBoxsWrap>
