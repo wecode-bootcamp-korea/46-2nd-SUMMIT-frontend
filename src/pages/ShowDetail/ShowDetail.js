@@ -7,8 +7,13 @@ export const Container = styled.div`
 `;
 
 export const MainWrap = styled.div`
-  width: 70%;
+  width: 60%;
   height: 100%;
+`;
+
+export const ShowImgWrap = styled.div`
+  display: flex;
+  justify-content: center;
 `;
 
 export const ShowImg = styled.img`
@@ -19,7 +24,7 @@ export const ShowImg = styled.img`
 
 export const ShowInfoWrap = styled.div`
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   width: 100%;
   height: 30px;
@@ -59,28 +64,29 @@ export const ShowContentsWrap = styled.div`
 export const ShowContents = styled.div`
   width: 100%;
   height: 100%;
-  display: ${props => (props.isOpen ? 'block' : 'none')};
+  display: ${props => (props.isOpen ? 'flex' : 'none')};
   white-space: pre-wrap;
 `;
 
 // 여기서부터 Aside Seats div****************************************************************
 export const AsideWrap = styled.div`
-  width: 30%;
+  width: 40%;
   height: 100%;
+  overflow-y: auto;
 `;
 
-export const ShowTitle = styled.p`
+export const SeatBoxsWrap = styled.div`
   width: 100%;
-  display: flex;
-  justify-content: center;
-  font-size: 25px;
-  font-weight: 500;
+  height: 55%;
+  position: fixed;
+  overflow: scroll;
 `;
 
 export const LikeBtn = styled.button`
-  width: 30%;
+  width: 20%;
   height: 100px;
-  background-color: none;
+  background-color: red;
+  border: none;
 `;
 
 export const LikeImg = styled.img`
@@ -93,7 +99,21 @@ export const LikeImg = styled.img`
 `;
 
 export const ReservationBtn = styled.button`
-  width: 70%;
+  width: 20%;
   background-color: purple;
   height: 100px;
+  border: none;
+`;
+
+export const ShowTitle = styled.div`
+  font-size: 20px;
+  font-weight: 600;
+`;
+
+export const ShowSalesContents = styled.div`
+  display: ${props => (props.isOpen ? 'flex' : 'none')};
+`;
+
+export const ShowReviewContents = styled.div`
+  display: ${props => (props.isOpen ? 'flex' : 'none')};
 `;

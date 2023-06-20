@@ -6,15 +6,17 @@ export const SeatBoxsWrap = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  border: 1px solid black;
+  border: none;
 `;
 
 export const SeatsWrap = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
-  border: 1px solid black;
+  border: none;
   padding: 30px;
+  border: 1px solid tomato;
+  margin: 10px 0px;
 `;
 
 export const SeatGradeWrap = styled.div`
@@ -107,4 +109,28 @@ export const CheckImg = styled(AiFillCheckCircle)`
 export const CheckedImg = styled(AiOutlineCheckCircle)`
   width: 30px;
   height: 30px;
+`;
+
+export const SelectTicket = styled.select`
+  width: 150px;
+  height: 50px;
+  border: none;
+  text-align: center;
+
+  &:focus {
+    border: none;
+  }
+`;
+
+export const OptionTicket = styled.option`
+  width: 100px;
+  height: 100px;
+  text-align: center;
+`;
+
+export const InfoWrap = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 `;

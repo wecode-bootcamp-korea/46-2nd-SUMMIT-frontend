@@ -7,28 +7,46 @@ import {
   DropButton,
   DropMenu,
   Header,
-  SearchBarInput,
-  SearchBarWrapper,
-  SearchBarImg,
-  CardWrap,
-  ShowInfo,
-  ShowWrap,
   FilterWrap,
+  CardListWrap,
 } from './ShowList';
-import ShowCard from '../../components/ShowCard/ShowCard.jsx';
-import searchSrc from '../../assets/search.png';
 import useOnClickOutside from '../../hooks/useOnClickOutside';
+import CardList from '../../components/CardList/CardList.jsx';
+import Search from '../../components/Search/Search.jsx';
+import { useSearchParams } from 'react-router-dom';
+
 const ShowList = () => {
   const [isDropOpen, setIsDropOpen] = useState(false);
   const [isRegionOpen, setIsRegionOpen] = useState(false);
   const [isSortOpen, setIsSortOpen] = useState(false);
-  const [show, setShow] = useState([]);
+
+  const [showList, setShowList] = useState([]);
+  const [searchInput, setSearchInput] = useState([]);
+
+  const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
     fetch('/data/showData.json')
       .then(res => res.json())
-      .then(data => setShow(data));
-  });
+      .then(data => setShowList(data));
+  }, []);
+
+  // useEffect((`http:10.58.52.97:5000/shows?`) => {
+  //   fetch('/data/showData.json')
+  //     .then(res => res.json())
+  //     .then(data => setShowList(data));
+  // }, []);
+
+  const dropRef = useRef();
+  const regionRef = useRef();
+  const sortRef = useRef();
+  useOnClickOutside(dropRef, () => setIsDropOpen(false));
+  useOnClickOutside(regionRef, () => setIsRegionOpen(false));
+  useOnClickOutside(sortRef, () => setIsSortOpen(false));
+  const showSearch = e => {
+    const { value } = e.target;
+    setSearchInput(value);
+  };
 
   const handleDropOnClick = () => {
     setIsDropOpen(prev => !prev);
@@ -42,12 +60,9 @@ const ShowList = () => {
     setIsSortOpen(prev => !prev);
   };
 
-  const dropRef = useRef();
-  const regionRef = useRef();
-  const sortRef = useRef();
-  useOnClickOutside(dropRef, () => setIsDropOpen(false));
-  useOnClickOutside(regionRef, () => setIsRegionOpen(false));
-  useOnClickOutside(sortRef, () => setIsSortOpen(false));
+  const filteredItem = showList.filter(show =>
+    show.title.includes(searchInput)
+  );
 
   return (
     <Container>
@@ -71,11 +86,8 @@ const ShowList = () => {
             </DropMenu>
           </DropWrapper>
         </FilterWrap>
-        <SearchBarWrapper>
-          <SearchBarImg src={searchSrc} />
-          <SearchBarInput type="text" placeholder="공연 검색" />
-        </SearchBarWrapper>
-        <DropWrapper ref={sortRef}>
+        <Search searchInput={searchInput} showSearch={showSearch} />
+        <DropWrapper>
           <DropButton onClick={handleSortOnClick}>정렬</DropButton>
           <DropMenu isOpen={isSortOpen}>
             {SORT_LIST.map(el => (
@@ -84,20 +96,9 @@ const ShowList = () => {
           </DropMenu>
         </DropWrapper>
       </Header>
-      <CardWrap>
-        {show.map(el => (
-          <ShowWrap key={el.id}>
-            <ShowCard src={el.url} />
-            <ShowInfo>
-              {el.title}
-              <br />
-              {el.detail_address}
-              <br />
-              {el.start_at}~{el.end_at}
-            </ShowInfo>
-          </ShowWrap>
-        ))}
-      </CardWrap>
+      <CardListWrap>
+        <CardList showList={filteredItem} />
+      </CardListWrap>
     </Container>
   );
 };

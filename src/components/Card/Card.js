@@ -1,9 +1,8 @@
 import styled from 'styled-components';
 
 export const CardWrapper = styled.div`
-  width: 100%;
-  height: 400px;
-  position: relative;
+  width: 300px;
+  height: 450px;
   border: none;
   display: flex;
   flex-direction: column;
@@ -57,4 +56,8 @@ export const LikeImg = styled.div`
     props.clicked
       ? `url("image/clickedHeart.ico")`
       : `url("image/unclickedHeart.ico")`};
+`;
+export const ShowInfo = styled.div`
+  font-size: 15px;
+  text-align: center;
 `;

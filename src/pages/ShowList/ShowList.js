@@ -18,6 +18,7 @@ export const Header = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 50px 150px;
   margin-bottom: 100px;
 `;
 
@@ -67,46 +68,6 @@ export const DropItem = styled.li`
   }
 `;
 
-export const SearchBarWrapper = styled.div`
-  display: flex;
-  justify-content: space-around;
-  width: 400px;
-  height: 30px;
-  background-color: #dfdfdf;
-`;
-
-export const SearchBarImg = styled.img`
-  width: 30px;
-  height: 30px;
-  background-image: url(${props => props.src});
-`;
-
-export const SearchBarInput = styled.input`
-  width: 100%;
-  height: 100%;
-  font-size: 20px;
-  text-align: center;
-  outline: none;
-  border: none;
-  background-color: #dfdfdf;
-
-  &:focus {
-    outline: 1px solid #830f11;
-  }
-`;
-
-export const CardWrap = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  flex-wrap: wrap;
-`;
-
-export const ShowInfo = styled.div`
-  font-size: 15px;
-  text-align: center;
-`;
-
 export const ShowWrap = styled.div`
   width: 25%;
   display: flex;
@@ -115,4 +76,16 @@ export const ShowWrap = styled.div`
 
 export const FilterWrap = styled.div`
   display: flex;
+`;
+
+export const CardListWrap = styled.div`
+  width: 100%;
+  display: grid;
+  grid-template-columns: 300px 300px 300px 300px;
+  grid-template-rows: 450px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  max-width: 1440px;
+  justify-content: center;
+  gap: 8px 12px;
 `;
