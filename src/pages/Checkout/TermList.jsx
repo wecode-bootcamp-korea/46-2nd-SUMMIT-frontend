@@ -1,32 +1,45 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as S from './Checkout';
 
-const TermList = () => {
+export const TermList = ({ title, content }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <>
       <S.InfBox type="btn">
         <S.InfBox>
           <S.CheckBox />
-          <S.InfTitle title="first">
-            개인정보 수집 및 이용 동의(필수)
-          </S.InfTitle>
+          <S.InfTitle title="first">{title}</S.InfTitle>
         </S.InfBox>
-        <S.AgreeBtn>보기</S.AgreeBtn>
+        <S.AgreeBtn
+          onClick={() => {
+            setIsOpen(prev => !prev);
+          }}
+        >
+          보기
+        </S.AgreeBtn>
       </S.InfBox>
-      <S.Textarea>{TERMS_BOX[0].content}</S.Textarea>
-      <S.InfBox type="btn">
-        <S.InfBox>
-          <S.CheckBox />
-          <S.InfTitle title="first">제 3자 정보 공유 동의(필수)</S.InfTitle>
-        </S.InfBox>
-        <S.AgreeBtn>보기</S.AgreeBtn>
-      </S.InfBox>
-      <S.Textarea>{TERMS_BOX[1].content}</S.Textarea>
+      {isOpen && <S.Textarea>{content}</S.Textarea>}
     </>
   );
 };
 
-export default TermList;
+const TermsSection = () => {
+  return (
+    <>
+      <TermList
+        title="개인정보 수집 및 이용 동의(필수)"
+        content={TERMS_BOX[0].content}
+      />
+      <TermList
+        title="제 3자 정보 공유 동의(필수)"
+        content={TERMS_BOX[1].content}
+      />
+    </>
+  );
+};
+
+export default TermsSection;
 
 const TERMS_BOX = [
   {

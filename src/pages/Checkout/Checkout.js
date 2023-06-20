@@ -31,6 +31,7 @@ export const PointInput = styled.input.attrs({ type: 'text' })`
   height: 25px;
   margin: 7px 0 0 -46px;
   outline: none;
+  text-align: right;
 `;
 
 export const InfBox = styled.div`
