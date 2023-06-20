@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 export const ReservationContainer = styled.div`
   padding: 10px 100px;
+  width: 100%;
+  margin-left: 500px;
   height: 100vh;
 `;
 
@@ -20,21 +22,24 @@ export const SubCategory = styled.h2`
 export const Category = styled.div`
   display: flex;
   margin: 10px auto;
+  align-items: center;
 `;
 
 export const CategoryTitle = styled.div`
   font-size: 1rem;
-  font-weight: 300;
+  font-weight: 500;
 `;
 
 export const CategoryItem = styled.div`
   font-size: 1rem;
   font-weight: 300;
+  margin-left: 5px;
 `;
 
 export const CategoryKey = styled.div`
   font-size: 1rem;
   font-weight: 500;
+  margin-left: 5px;
 `;
 
 export const CategoryValue = styled.div`
@@ -47,12 +52,28 @@ export const CheckboxSection = styled.div`
   margin-top: 30px;
   display: flex;
   flex-direction: column;
-  margin-left: 30px;
-  gap: 10px;
+  gap: 15px;
 `;
 
 export const ButtontoCheckout = styled.div`
   position: relative;
   left: 300px;
-  padding-top: 20px;
+  padding: 20px 0;
+`;
+
+export const ResetBtn = styled.button`
+  background-color: #831010;
+  color: white;
+  border: none;
+  border-radius: 2px;
+  transition: background-color 1s ease-in;
+  width: 90px;
+  height: 25px;
+  margin-left: 10px;
+  align-self: flex-end;
+`;
+
+export const Input = styled.input`
+  border: #881010 1px solid;
+  margin-left: 5px;
 `;
