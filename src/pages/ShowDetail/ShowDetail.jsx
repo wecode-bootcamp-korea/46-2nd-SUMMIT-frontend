@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, Link } from 'react-router-dom';
 import likeSrc from '../../assets/like.png';
 import {
   Container,
@@ -53,8 +53,6 @@ const ShowDetail = () => {
       .then(res => res.json())
       .then(data => setShowDetail(data.showDetail[0]));
   }, []);
-
-  console.log('showDetail>>>', showDetail);
 
   if (showDetail.length === 0) {
     return null;
@@ -125,7 +123,9 @@ const ShowDetail = () => {
           <LikeBtn>
             <LikeImg src={likeSrc} />
           </LikeBtn>
-          <ReservationBtn>예매하기</ReservationBtn>
+          <Link to="/reservation">
+            <ReservationBtn>예매하기</ReservationBtn>
+          </Link>
         </SeatBoxsWrap>
       </AsideWrap>
     </Container>

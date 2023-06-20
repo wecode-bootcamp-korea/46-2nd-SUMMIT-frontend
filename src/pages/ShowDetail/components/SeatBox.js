@@ -124,6 +124,23 @@ export const CheckedImg = styled(AiOutlineCheckCircle)`
   height: 30px;
 `;
 
+export const SelectTicket = styled.select`
+  width: 150px;
+  height: 50px;
+  border: none;
+  text-align: center;
+
+  &:focus {
+    border: none;
+  }
+`;
+
+export const OptionTicket = styled.option`
+  width: 100px;
+  height: 100px;
+  text-align: center;
+`;
+
 export const InfoWrap = styled.div`
   width: 100%;
   display: flex;

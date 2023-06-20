@@ -31,7 +31,7 @@ const SeatBox = ({ seat, title, showId, seatsDetail }) => {
   const handleSeatOnclick = () => {
     setIsSeatOpen(prev => !prev);
   };
-  console.log('제가 넘겨드리는것>>', checkoutInfo);
+
   const addCheckoutInfo = (key, value) => {
     setCheckoutInfo(prevCheckoutInfo => ({
       ...prevCheckoutInfo,
