@@ -7,6 +7,7 @@ import ShowList from './pages/ShowList/ShowList.jsx';
 import Reservation from './pages/Reservation/Reservation.jsx';
 import Checkout from './pages/Checkout/Checkout.jsx';
 import Community from './pages/Community/Community.jsx';
+import Footer from './components/Footer/Footer.jsx';
 
 const Router = () => {
   return (
@@ -20,6 +21,7 @@ const Router = () => {
         <Route path="/showDetail" element={<ShowDetail />} />
         <Route path="/showList" element={<ShowList />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 };
