@@ -95,6 +95,7 @@ const Container = styled.div`
   min-height: 100%;
   padding-bottom: 60px;
   height: auto;
+  bottom: 0px;
 `;
 
 const FooterWrap = styled.div`
