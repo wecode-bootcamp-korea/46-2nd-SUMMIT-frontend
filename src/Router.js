@@ -9,6 +9,7 @@ import Reservation from './pages/Reservation/Reservation.jsx';
 import Checkout from './pages/Checkout/Checkout.jsx';
 import Community from './pages/Community/Community.jsx';
 import Container from './Container.js';
+import Register from './pages/Register/Register.jsx';
 
 const Router = () => {
   return (
@@ -21,6 +22,7 @@ const Router = () => {
           <Route path="/reservation" element={<Reservation />} />
           <Route path="/showDetail" element={<ShowDetail />} />
           <Route path="/showList" element={<ShowList />} />
+          <Route path="/register" element={<Register />} />
         </Route>
         <Route path="/login" element={<Login />} />
       </Routes>
