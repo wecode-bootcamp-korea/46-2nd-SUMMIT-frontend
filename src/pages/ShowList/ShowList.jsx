@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   Container,
   Title,
@@ -17,12 +17,18 @@ import {
 } from './ShowList';
 import ShowCard from '../../components/ShowCard/ShowCard.jsx';
 import searchSrc from '../../assets/search.png';
-
+import useOnClickOutside from '../../hooks/useOnClickOutside';
 const ShowList = () => {
   const [isDropOpen, setIsDropOpen] = useState(false);
   const [isRegionOpen, setIsRegionOpen] = useState(false);
   const [isSortOpen, setIsSortOpen] = useState(false);
   const [show, setShow] = useState([]);
+
+  useEffect(() => {
+    fetch('/data/showData.json')
+      .then(res => res.json())
+      .then(data => setShow(data));
+  });
 
   const handleDropOnClick = () => {
     setIsDropOpen(prev => !prev);
@@ -36,18 +42,19 @@ const ShowList = () => {
     setIsSortOpen(prev => !prev);
   };
 
-  useEffect(() => {
-    fetch('/data/showData.json')
-      .then(res => res.json())
-      .then(data => setShow(data));
-  });
+  const dropRef = useRef();
+  const regionRef = useRef();
+  const sortRef = useRef();
+  useOnClickOutside(dropRef, () => setIsDropOpen(false));
+  useOnClickOutside(regionRef, () => setIsRegionOpen(false));
+  useOnClickOutside(sortRef, () => setIsSortOpen(false));
 
   return (
     <Container>
       <Title>공연찾기</Title>
       <Header>
         <FilterWrap>
-          <DropWrapper>
+          <DropWrapper ref={dropRef}>
             <DropButton onClick={handleDropOnClick}>테마별</DropButton>
             <DropMenu isOpen={isDropOpen}>
               {THEME_LIST.map(el => (
@@ -55,7 +62,7 @@ const ShowList = () => {
               ))}
             </DropMenu>
           </DropWrapper>
-          <DropWrapper>
+          <DropWrapper ref={regionRef}>
             <DropButton onClick={handleRegionOnClick}>지역별</DropButton>
             <DropMenu isOpen={isRegionOpen}>
               {REGION_LIST.map(el => (
@@ -68,7 +75,7 @@ const ShowList = () => {
           <SearchBarImg src={searchSrc} />
           <SearchBarInput type="text" placeholder="공연 검색" />
         </SearchBarWrapper>
-        <DropWrapper>
+        <DropWrapper ref={sortRef}>
           <DropButton onClick={handleSortOnClick}>정렬</DropButton>
           <DropMenu isOpen={isSortOpen}>
             {SORT_LIST.map(el => (
