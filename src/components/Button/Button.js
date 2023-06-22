@@ -10,9 +10,15 @@ const medium = css`
   height: 40px;
 `;
 
+const showcard = css`
+  width: 200px;
+  height: 75px;
+`;
+
 const table = {
   large,
   medium,
+  showcard,
 };
 
 export const ButtonStyle = styled.button`
