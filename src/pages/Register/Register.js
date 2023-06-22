@@ -27,9 +27,9 @@ export const RegisterContainer = styled.div`
     display: flex;
     flex-direction: column;
     text-align: center;
-    width: 30%;
+    width: 40%;
     margin: auto;
-    gap: 15px;
+    gap: 10px;
     background-color: transparent;
   }
 
@@ -41,10 +41,13 @@ export const RegisterContainer = styled.div`
     padding: 4px;
     border-radius: 10px;
     text-align: center;
+    height: 35px;
+    font-size: 15px;
   }
 
   input::placeholder {
     color: white;
+    font-size: 15px;
   }
 
   .theater {
@@ -59,32 +62,41 @@ export const RegisterContainer = styled.div`
   }
 
   .submit {
-    background-color: white;
-    color: #831010;
-    border: 1px solid #831010;
+    background-color: #831010;
+    color: white;
+    border: none;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    cursor: pointer;
+    border-radius: 2px;
+    transition: background-color 1s ease-in;
 
     &:hover {
-      background-color: #831010;
+      background-color: white;
       opacity: 0.8;
-      color: white;
-      border: none;
-      border-radius: 2px;
-      transition: background-color 1s ease-in;
+      color: #831010;
+      border: 1px solid #831010;
+      cursor: pointer;
     }
+  }
+
+  .showDetail {
+    height: 70px;
+  }
+
+  .additional {
+    height: 40px;
   }
 `;
 
 export const RegisterTitle = styled.h1`
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 500;
   color: white;
   margin-bottom: 15px;
 `;
 
 export const ResultMessage = styled.div`
-  font-size: 0.7rem;
+  font-size: 1rem;
   color: white;
   font-style: italic;
+  margin-top: 20px;
 `;

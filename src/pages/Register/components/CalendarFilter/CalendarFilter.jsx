@@ -3,16 +3,14 @@ import DatePicker from 'react-datepicker';
 import { CalendarFilterContainer } from './CalendarFilter';
 import 'react-datepicker/dist/react-datepicker.css';
 
-const CalendarFilter = () => {
-  const dateNow = new Date();
-  const [startDate, setStartDate] = useState(dateNow);
-  const [endDate, setEndDate] = useState(dateNow);
-
+const CalendarFilter = ({ startDate, setStartDate, endDate, setEndDate }) => {
   return (
     <CalendarFilterContainer>
       <DatePicker
         selected={startDate}
-        onChange={date => setStartDate(date)}
+        onChange={date => {
+          setStartDate(date);
+        }}
         startDate={startDate}
         minDate={startDate}
       />
