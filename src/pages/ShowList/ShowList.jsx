@@ -25,8 +25,9 @@ const ShowList = () => {
 
   const [searchParams, setSearchParams] = useSearchParams();
 
+  //TODO MOCK DATA용
   useEffect(() => {
-    fetch('/data/showData.json')
+    fetch('/data/showDataMock.json')
       .then(res => res.json())
       .then(data => setShowList(data));
   }, []);
