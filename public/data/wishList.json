@@ -1,0 +1,6 @@
+[
+  { "id": 1, "userId": 21, "theatreId": 1, "theatreName": "시카고" },
+  { "id": 2, "userId": 21, "theatreId": 2, "theatreName": "곤투모로우" },
+  { "id": 3, "userId": 21, "theatreId": 3, "theatreName": "레미제라블" },
+  { "id": 4, "userId": 21, "theatreId": 4, "theatreName": "맘마미아" }
+]

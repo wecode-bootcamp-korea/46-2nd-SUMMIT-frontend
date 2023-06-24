@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { APIS } from '../../config';
 import {
   Navbar,
   ImgLogo,
@@ -16,11 +17,16 @@ import {
   LogoutButton,
   ContentsWriter,
   UnderLines,
+  WishItem,
+  WishImg,
+  WishListLength,
+  WishListContainer,
 } from './Nav';
 import Logo from '../../assets/Logodmo.png';
 import SearchBar from '../Searchbar';
 import { BsFillPersonFill } from 'react-icons/bs';
 import { AiOutlineHeart } from 'react-icons/ai';
+import Button from '../Button/Button.jsx';
 
 const Nav = () => {
   const navigate = useNavigate();
@@ -30,6 +36,23 @@ const Nav = () => {
   const [showSecondModal, setShowSecondModal] = useState(false);
   const [isCreator, setIsCreator] = useState(false);
   const [userId, setUserId] = useState('');
+  const [wishListData, setWishListData] = useState([]);
+  const token = localStorage.getItem('token');
+
+  const getWishItem = () => {
+    fetch(`${APIS.wish}`, {
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: token,
+      },
+    })
+      .then(res => res.json())
+      .then(data => setWishListData(data.wishData.result));
+  };
+
+  useEffect(() => {
+    getWishItem();
+  }, []);
 
   useEffect(() => {
     const token = window.localStorage.getItem('token');
@@ -51,6 +74,20 @@ const Nav = () => {
     } else {
       setShowModal(true);
     }
+  };
+
+  const handleDelete = id => {
+    fetch(`${APIS.wish}?wishId=${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: token,
+      },
+    }).then(res => {
+      if (res.status === 204) {
+        getWishItem();
+      }
+    });
   };
 
   const closeModal = () => {
@@ -102,8 +139,12 @@ const Nav = () => {
             {isCreator ? (
               <ContentsWriter href="##">공연등록</ContentsWriter>
             ) : (
-              <AiOutlineHeart onClick={handleSecondModalClick} />
+              <WishListContainer>
+                <AiOutlineHeart onClick={handleSecondModalClick} />
+                <WishListLength>{wishListData.length}</WishListLength>
+              </WishListContainer>
             )}
+
             <BsFillPersonFill onClick={handleUserClick} />
           </MypageButton>
         </NavLinkItemRight>
@@ -127,7 +168,22 @@ const Nav = () => {
 
       {showSecondModal && (
         <SecondModal>
-          <ModalClose onClick={closeSecondModal} />
+          {wishListData.length !== 0 &&
+            wishListData.map(item => (
+              <div key={item.id}>
+                <Link to={`/showDetail:${item.id}`}>
+                  <WishItem>
+                    <WishImg src={item.image_url} alt="wishListItemPoster" />
+                    {item.title}
+                    <Button
+                      size="nav"
+                      text="삭제하기"
+                      onClick={() => handleDelete(item.id)}
+                    />
+                  </WishItem>
+                </Link>
+              </div>
+            ))}
         </SecondModal>
       )}
     </Navbar>
