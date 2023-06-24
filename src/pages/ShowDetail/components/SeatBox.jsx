@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   SeatBoxsWrap,
   SeatsWrap,
@@ -19,19 +19,19 @@ import {
 import { useRecoilState } from 'recoil';
 import checkoutInfoState from '../../../atom';
 
-const SeatBox = ({ seat, title }) => {
+const SeatBox = ({ seat, title, showId, seatsDetail }) => {
   const [isSeatOpen, setIsSeatOpen] = useState(false);
   const [isSelectOpen, setIsSelectOpen] = useState(false);
   const [option, setOption] = useState('');
   const [checkoutInfo, setCheckoutInfo] = useRecoilState(checkoutInfoState);
 
-  const { id, age, grade, price, runningTime, seatStatus, theater, ticket } =
-    seat;
+  const { price, theater, grade, ticket } = seat;
   const totalPrice = price * option;
-  const handleSeatOnClick = () => {
+
+  const handleSeatOnclick = () => {
     setIsSeatOpen(prev => !prev);
   };
-
+  console.log('제가 넘겨드리는것>>', checkoutInfo);
   const addCheckoutInfo = (key, value) => {
     setCheckoutInfo(prevCheckoutInfo => ({
       ...prevCheckoutInfo,
@@ -39,29 +39,29 @@ const SeatBox = ({ seat, title }) => {
     }));
   };
 
-  useEffect(() => {});
-
   const handleSelectOnclick = () => {
     setIsSelectOpen(prev => !prev);
   };
 
   const handleTicketOnClick = e => {
-    const selectedValue = e.target.value;
+    const selectedTicket = e.target.value;
     setIsSelectOpen(prev => !prev);
-    setOption(selectedValue);
+    setOption(selectedTicket);
     addCheckoutInfo('grade', grade);
     addCheckoutInfo('title', title);
     addCheckoutInfo('price', price);
     addCheckoutInfo('theater', theater);
-    addCheckoutInfo('ticket', selectedValue);
-    addCheckoutInfo('totalPrice', price * selectedValue);
+    addCheckoutInfo('selectedTicket', selectedTicket);
+    addCheckoutInfo('ticket', ticket);
+    addCheckoutInfo('showId', showId);
+    addCheckoutInfo('seatsDetail', seatsDetail);
+    addCheckoutInfo('totalPrice', price * selectedTicket);
   };
-
   return (
     <SeatBoxsWrap>
       <SeatsWrap>
         <SeatInfoWrap>
-          <SeatGradeWrap onClick={handleSeatOnClick}>
+          <SeatGradeWrap onClick={handleSeatOnclick}>
             {isSeatOpen ? <CheckImg /> : <CheckedImg />}
             <SeatGrade>{grade}</SeatGrade>
           </SeatGradeWrap>

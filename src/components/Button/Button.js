@@ -11,7 +11,7 @@ const medium = css`
 `;
 
 const showcard = css`
-  width: 200px;
+  width: 150px;
   height: 75px;
 `;
 

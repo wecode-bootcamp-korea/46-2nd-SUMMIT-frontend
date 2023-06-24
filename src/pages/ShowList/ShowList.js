@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { lighten, darken } from 'polished';
-
+import { AiFillCheckCircle, AiOutlineCheckCircle } from 'react-icons/ai';
 export const Container = styled.div`
   width: 100vw;
   height: 100vh;
@@ -59,7 +59,9 @@ export const DropItem = styled.li`
   height: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  padding-left: 20px;
+  font-size: 21px;
   &:hover {
     background: ${lighten(0.1, '#dfdfdf')};
   }
@@ -81,10 +83,9 @@ export const FilterWrap = styled.div`
 export const CardListWrap = styled.div`
   width: 100%;
   display: grid;
-  grid-template-columns: 300px 300px 300px 300px;
-  grid-template-rows: 450px;
+  grid-template-columns: repeat(4, 300px);
+  grid-template-rows: 550px;
   margin: 0 auto;
-  flex-wrap: wrap;
   max-width: 1440px;
   justify-content: center;
   gap: 8px 12px;

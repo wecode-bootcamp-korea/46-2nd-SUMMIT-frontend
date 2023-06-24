@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 
 export const CardWrapper = styled.div`
-  width: 300px;
-  height: 450px;
+  width: 100%;
+
+  position: relative;
   border: none;
   display: flex;
   flex-direction: column;
@@ -18,11 +19,10 @@ export const CardImg = styled.img`
 export const CardFunction = styled.div`
   display: flex;
   justify-content: flex-end;
-  position: absolute;
 `;
 
 export const CardLike = styled.button`
-  width: 200px;
+  width: 150px;
   height: 75px;
   left: 0;
   background-color: white;
@@ -57,6 +57,7 @@ export const LikeImg = styled.div`
       ? `url("image/clickedHeart.ico")`
       : `url("image/unclickedHeart.ico")`};
 `;
+
 export const ShowInfo = styled.div`
   font-size: 15px;
   text-align: center;
