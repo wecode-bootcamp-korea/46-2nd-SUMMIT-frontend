@@ -1,90 +1,78 @@
-[
-  {
-    "id": "1",
-    "title": "시카고1",
-    "content": " Welcome! Ladies and gentleman. You are about to see a story of murder, greed, corruption, violence, exploitation, adultery and treachery─All those things we all hold near and dear to our hearts. Thank you. \n 신사 숙녀 여러분! 환영합니다.오늘 여러분은 살인과 탐욕, 부패, 폭력, 사기, 간통, 그리고 배신이 가득 담긴 얘기를 감상하시게 될 겁니다. 바로 우리 모두가 매우 소중하게 여기는 그런 것 들이죠. 감사합니다!",
-    "running_time": "145분",
-    "genre_id": "1",
-    "start_date": "2023.05.27",
-    "end_date": "2023.08.06",
-    "detail_address": "블루스퀘어",
-    "imageUrl": "https://ticketimage.interpark.com/Play/image/large/23/23006588_p.gif"
+{
+  "showDetail": {
+    "title": "와일드 그레이",
+    "showDetail": "예술과 현실 사이에서 자유를 꿈꾸는 세 사람\n\n관습과 규범으로 경직되어 있던 19세기 말 런던.\n오스카 와일드는 소설 '도리언 그레이의 초상'을 연재하고 시대에 맞지 않는 파격적인 소재와 내용으로 영국 사회를 들썩이게 한다.\n몇 번의 수정에도 논란이 거세지자 결국 주인공 도리안이 죽음을 맞는다는 원하지 않는 결말을 낸 채 소설을 출간하는 와일드와 그의 곁을 묵묵히 지키는 과거의 연인이자 현재의 가족같은 절친 로버트 로스.\n예술 안에서조차 바라던 자유가 좌절된 바로 그 때, 거짓말처럼 그의 앞에 도리안 그레이를 꼭 닮은 남자가 나타나는데..",
+    "imageUrl": "https://ticketimage.interpark.com/Play/image/large/23/23006588_p.gif",
+    "runningTime": "110분",
+    "genre": 4,
+    "startDate": "2023-06-07T15:00:00.000Z",
+    "endDate": "2023-09-02T15:00:00.000Z",
+    "averageRating": "3.5",
+    "seatsDetail": [
+      {
+        "age": "12세이상",
+        "grade": "R석",
+        "price": 66000,
+        "ticket": 289,
+        "theater": 2,
+        "seatStatus": 1,
+        "runningTime": 3
+      },
+      {
+        "age": "12세이상",
+        "grade": "S석",
+        "price": 44000,
+        "ticket": 73,
+        "theater": 2,
+        "seatStatus": 1,
+        "runningTime": 3
+      },
+      {
+        "age": "12세이상",
+        "grade": "R석",
+        "price": 66000,
+        "ticket": 289,
+        "theater": 2,
+        "seatStatus": 1,
+        "runningTime": 4
+      },
+      {
+        "age": "12세이상",
+        "grade": "S석",
+        "price": 44000,
+        "ticket": 73,
+        "theater": 2,
+        "seatStatus": 1,
+        "runningTime": 4
+      }
+    ]
   },
-  {
-    "id": "2",
-    "title": "시카고2",
-    "content": " Welcome! Ladies and gentleman. You are about to see a story of murder, greed, corruption, violence, exploitation, adultery and treachery─All those things we all hold near and dear to our hearts. Thank you. \n 신사 숙녀 여러분! 환영합니다.오늘 여러분은 살인과 탐욕, 부패, 폭력, 사기, 간통, 그리고 배신이 가득 담긴 얘기를 감상하시게 될 겁니다. 바로 우리 모두가 매우 소중하게 여기는 그런 것 들이죠. 감사합니다!",
-    "running_time": "145분",
-    "genre_id": "1",
-    "start_date": "2023.05.27",
-    "end_date": "2023.08.06",
-    "detail_address": "블루스퀘어",
-    "imageUrl": "https://ticketimage.interpark.com/Play/image/large/23/23006588_p.gif"
-  },
-  {
-    "id": "3",
-    "title": "시카고3",
-    "content": " Welcome! Ladies and gentleman. You are about to see a story of murder, greed, corruption, violence, exploitation, adultery and treachery─All those things we all hold near and dear to our hearts. Thank you. \n 신사 숙녀 여러분! 환영합니다.오늘 여러분은 살인과 탐욕, 부패, 폭력, 사기, 간통, 그리고 배신이 가득 담긴 얘기를 감상하시게 될 겁니다. 바로 우리 모두가 매우 소중하게 여기는 그런 것 들이죠. 감사합니다!",
-    "running_time": "145분",
-    "genre_id": "1",
-    "start_date": "2023.05.27",
-    "end_date": "2023.08.06",
-    "detail_address": "블루스퀘어",
-    "imageUrl": "https://ticketimage.interpark.com/Play/image/large/23/23006918_p.gif"
-  },
-  {
-    "id": "4",
-    "title": "맘마미아4",
-    "content": " Welcome! Ladies and gentleman. You are about to see a story of murder, greed, corruption, violence, exploitation, adultery and treachery─All those things we all hold near and dear to our hearts. Thank you. \n 신사 숙녀 여러분! 환영합니다.오늘 여러분은 살인과 탐욕, 부패, 폭력, 사기, 간통, 그리고 배신이 가득 담긴 얘기를 감상하시게 될 겁니다. 바로 우리 모두가 매우 소중하게 여기는 그런 것 들이죠. 감사합니다!",
-    "running_time": "145분",
-    "genre_id": "3",
-    "start_date": "2023.05.27",
-    "end_date": "2023.08.06",
-    "detail_address": "블루스퀘어",
-    "imageUrl": "https://ticketimage.interpark.com/Play/image/large/23/23006918_p.gif"
-  },
-  {
-    "id": "5",
-    "title": "마맘미아5",
-    "content": " Welcome! Ladies and gentleman. You are about to see a story of murder, greed, corruption, violence, exploitation, adultery and treachery─All those things we all hold near and dear to our hearts. Thank you. \n 신사 숙녀 여러분! 환영합니다.오늘 여러분은 살인과 탐욕, 부패, 폭력, 사기, 간통, 그리고 배신이 가득 담긴 얘기를 감상하시게 될 겁니다. 바로 우리 모두가 매우 소중하게 여기는 그런 것 들이죠. 감사합니다!",
-    "running_time": "145분",
-    "genre_id": "1",
-    "start_date": "2023.05.27",
-    "end_date": "2023.08.06",
-    "detail_address": "블루스퀘어",
-    "imageUrl": "https://ticketimage.interpark.com/Play/image/large/23/23006588_p.gif"
-  },
-  {
-    "id": "6",
-    "title": "시카고고6",
-    "content": " Welcome! Ladies and gentleman. You are about to see a story of murder, greed, corruption, violence, exploitation, adultery and treachery─All those things we all hold near and dear to our hearts. Thank you. \n 신사 숙녀 여러분! 환영합니다.오늘 여러분은 살인과 탐욕, 부패, 폭력, 사기, 간통, 그리고 배신이 가득 담긴 얘기를 감상하시게 될 겁니다. 바로 우리 모두가 매우 소중하게 여기는 그런 것 들이죠. 감사합니다!",
-    "running_time": "145분",
-    "genre_id": "1",
-    "start_date": "2023.05.27",
-    "end_date": "2023.08.06",
-    "detail_address": "블루스퀘어",
-    "imageUrl": "https://ticketimage.interpark.com/Play/image/large/23/23006588_p.gif"
-  },
-  {
-    "id": "7",
-    "title": "시카고7",
-    "content": " Welcome! Ladies and gentleman. You are about to see a story of murder, greed, corruption, violence, exploitation, adultery and treachery─All those things we all hold near and dear to our hearts. Thank you. \n 신사 숙녀 여러분! 환영합니다.오늘 여러분은 살인과 탐욕, 부패, 폭력, 사기, 간통, 그리고 배신이 가득 담긴 얘기를 감상하시게 될 겁니다. 바로 우리 모두가 매우 소중하게 여기는 그런 것 들이죠. 감사합니다!",
-    "running_time": "145분",
-    "genre_id": "1",
-    "start_date": "2023.05.27",
-    "end_date": "2023.08.06",
-    "detail_address": "블루스퀘어",
-    "imageUrl": "https://ticketimage.interpark.com/Play/image/large/23/23006918_p.gif"
-  },
-  {
-    "id": "8",
-    "title": "시카고3a8",
-    "content": " Welcome! Ladies and gentleman. You are about to see a story of murder, greed, corruption, violence, exploitation, adultery and treachery─All those things we all hold near and dear to our hearts. Thank you. \n 신사 숙녀 여러분! 환영합니다.오늘 여러분은 살인과 탐욕, 부패, 폭력, 사기, 간통, 그리고 배신이 가득 담긴 얘기를 감상하시게 될 겁니다. 바로 우리 모두가 매우 소중하게 여기는 그런 것 들이죠. 감사합니다!",
-    "running_time": "145분",
-    "genre_id": "1",
-    "start_date": "2023.05.27",
-    "end_date": "2023.08.06",
-    "detail_address": "블루스퀘어",
-    "imageUrl": "https://ticketimage.interpark.com/Play/image/large/23/23006588_p.gif"
-  }
-]
+  "reviews": [
+    {
+      "title": "123124",
+      "content": "23546ㅇㅎ로",
+      "rating": "3.00"
+    },
+    {
+      "title": "23452345",
+      "content": "ㅈㅎㅈㄷㄱ쇼6235ㅛ",
+      "rating": "3.00"
+    },
+    {
+      "title": "ㅈㄷㄱ쇼ㅗㅈㄷㄱ쇼",
+      "content": "234623ㅇㄴㄹ",
+      "rating": "2.00"
+    },
+    {
+      "title": "ㄴㅇㄹ혾ㅇ러ㅗ",
+      "content": "23456ㄴㅇㄹㅎㄴㅇ",
+      "rating": "5.00"
+    },
+    {
+      "title": "5432435ㅈㅇㄹ",
+      "content": "23456ㅇㄹ홎",
+      "rating": "3.00"
+    }
+  ],
+  "reviewCount": 5
+}

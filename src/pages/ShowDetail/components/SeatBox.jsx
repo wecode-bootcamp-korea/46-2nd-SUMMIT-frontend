@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   SeatBoxsWrap,
   SeatsWrap,
@@ -8,35 +8,60 @@ import {
   SeatInfo,
   CheckImg,
   CheckedImg,
-  SelectTicket,
-  OptionTicket,
   InfoWrap,
+  DropWrapper,
+  DropButton,
+  DropMenu,
+  DropItem,
+  ArrowDownImg,
+  TotalPrice,
 } from './SeatBox';
+import { useRecoilState } from 'recoil';
+import checkoutInfoState from '../../../atom';
 
-const SeatBox = ({ seat }) => {
+const SeatBox = ({ seat, title }) => {
   const [isSeatOpen, setIsSeatOpen] = useState(false);
-  const [isCountOpen, setIsCountOpen] = useState(false);
+  const [isSelectOpen, setIsSelectOpen] = useState(false);
+  const [option, setOption] = useState('');
+  const [checkoutInfo, setCheckoutInfo] = useRecoilState(checkoutInfoState);
 
   const { id, age, grade, price, runningTime, seatStatus, theater, ticket } =
     seat;
-
-  console.log(seat);
-
-  // console.log(id, age, grade, price, runningTime, seatStatus, theater, ticket);
-
-  const handleSeatOnclick = () => {
+  const totalPrice = price * option;
+  const handleSeatOnClick = () => {
     setIsSeatOpen(prev => !prev);
   };
 
-  const handleCountOnClick = () => {
-    setIsCountOpen(prev => !prev);
+  const addCheckoutInfo = (key, value) => {
+    setCheckoutInfo(prevCheckoutInfo => ({
+      ...prevCheckoutInfo,
+      [key]: value,
+    }));
+  };
+
+  useEffect(() => {});
+
+  const handleSelectOnclick = () => {
+    setIsSelectOpen(prev => !prev);
+  };
+
+  const handleTicketOnClick = e => {
+    const selectedValue = e.target.value;
+    setIsSelectOpen(prev => !prev);
+    setOption(selectedValue);
+    addCheckoutInfo('grade', grade);
+    addCheckoutInfo('title', title);
+    addCheckoutInfo('price', price);
+    addCheckoutInfo('theater', theater);
+    addCheckoutInfo('ticket', selectedValue);
+    addCheckoutInfo('totalPrice', price * selectedValue);
   };
 
   return (
     <SeatBoxsWrap>
       <SeatsWrap>
         <SeatInfoWrap>
-          <SeatGradeWrap onClick={handleSeatOnclick}>
+          <SeatGradeWrap onClick={handleSeatOnClick}>
             {isSeatOpen ? <CheckImg /> : <CheckedImg />}
             <SeatGrade>{grade}</SeatGrade>
           </SeatGradeWrap>
@@ -45,13 +70,24 @@ const SeatBox = ({ seat }) => {
               price
             ).toLocaleString()}원`}</SeatInfo>
             {isSeatOpen && (
-              <SelectTicket onClick={handleCountOnClick}>
-                {COUNT_LIST.map(item => (
-                  <OptionTicket key={item.id} value={item.count}>
-                    {`매수: ${item.count}매`}
-                  </OptionTicket>
-                ))}
-              </SelectTicket>
+              <DropWrapper>
+                <DropButton onClick={handleSelectOnclick}>
+                  {isSelectOpen ? `매수선택` : `${option}매`}
+                  <ArrowDownImg />
+                </DropButton>
+                <DropMenu isOpen={isSelectOpen}>
+                  {COUNT_LIST.map(el => (
+                    <DropItem
+                      key={el.id}
+                      value={el.count}
+                      onClick={handleTicketOnClick}
+                    >
+                      {`${el.count}매`}
+                    </DropItem>
+                  ))}
+                </DropMenu>
+                <TotalPrice>{`총합: ${totalPrice.toLocaleString()}원`}</TotalPrice>
+              </DropWrapper>
             )}
           </InfoWrap>
         </SeatInfoWrap>

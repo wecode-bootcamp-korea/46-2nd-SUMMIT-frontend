@@ -1,5 +1,9 @@
 import styled from 'styled-components';
-import { AiFillCheckCircle, AiOutlineCheckCircle } from 'react-icons/ai';
+import {
+  AiFillCheckCircle,
+  AiOutlineCheckCircle,
+  AiOutlineCaretDown,
+} from 'react-icons/ai';
 import { darken, lighten } from 'polished';
 
 export const SeatBoxsWrap = styled.div`
@@ -20,7 +24,7 @@ export const SeatsWrap = styled.div`
 `;
 
 export const SeatGradeWrap = styled.div`
-  width: 300px;
+  width: 100%;
   height: 30px;
   display: flex;
   justify-content: flex-start;
@@ -34,7 +38,7 @@ export const SeatGrade = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  width: 300px;
+  width: 100%;
   height: 50px;
   margin-left: 15px;
   font-size: 23px;
@@ -51,11 +55,10 @@ export const SeatInfo = styled.div`
   display: ${props => (props.isOpen ? 'block' : 'none')};
 `;
 
-// DropDown 컴포넌트 삭제 예정********************************************************
-
 export const DropWrapper = styled.div`
-  position: relative;
   display: flex;
+  width: 100%;
+  position: relative;
 `;
 
 export const DropButton = styled.button`
@@ -65,6 +68,7 @@ export const DropButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+  border: none;
 
   &:hover {
     background: ${lighten(0.1, '#dfdfdf')};
@@ -84,6 +88,15 @@ export const DropMenu = styled.ul`
   list-style: none;
   margin: 5px 0 0 0;
   display: ${props => (props.isOpen ? 'block' : 'none')};
+  border: 1px solid #dfdfdf;
+  max-height: 100px;
+  overflow-y: scroll;
+`;
+
+export const TotalPrice = styled.span`
+  width: 150px;
+  display: flex;
+  align-items: center;
 `;
 
 export const DropItem = styled.li`
@@ -111,26 +124,15 @@ export const CheckedImg = styled(AiOutlineCheckCircle)`
   height: 30px;
 `;
 
-export const SelectTicket = styled.select`
-  width: 150px;
-  height: 50px;
-  border: none;
-  text-align: center;
-
-  &:focus {
-    border: none;
-  }
-`;
-
-export const OptionTicket = styled.option`
-  width: 100px;
-  height: 100px;
-  text-align: center;
-`;
-
 export const InfoWrap = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
+  font-size: 20px;
+`;
+
+export const ArrowDownImg = styled(AiOutlineCaretDown)`
+  width: 30px;
+  height: 30px;
 `;
