@@ -3,30 +3,55 @@ import {
   CardWrapper,
   CardImg,
   CardLike,
-  CardReservation,
   LikeImg,
   ShowInfo,
+  CardFunction,
 } from './Card';
 import likeSrc from '../../assets/heart.png';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import Button from '../../components/Button/Button.jsx';
 
 const Card = ({ show }) => {
-  const { image_url, id, title, detail_address, start_at, end_at } = show;
+  const { imageUrl, showId, title, theaterNames, startDate, endDate } = show;
+
+  const navigate = useNavigate();
+  const [isClicked, setIsClicked] = useState(false);
+  const token = localStorage.getItem('token');
+
+  function handleLike() {
+    setIsClicked(prev => !prev);
+    !isClicked &&
+      fetch('http://10.58.52.53:8080/wishs/create', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+          Authorization: token,
+        },
+        body: JSON.stringify({ showId: 4 }),
+      }).then(res => res.json());
+  }
   return (
     <CardWrapper>
-      <CardImg src={image_url} />
-      <CardLike>
-        <LikeImg src={likeSrc} />
-      </CardLike>
-      <Link key={id} to={`/showDetail/${id}`}>
-        <CardReservation>예매</CardReservation>
-      </Link>
+      <CardImg src={imageUrl} />
+      <CardFunction>
+        <CardLike>
+          <LikeImg src={likeSrc} onClick={handleLike} />
+        </CardLike>
+        <Button
+          size="showcard"
+          text="예매"
+          onClick={() => {
+            navigate(`/showDetail/${showId}`);
+          }}
+        />
+      </CardFunction>
       <ShowInfo>
         {title}
         <br />
-        {detail_address}
+        {theaterNames}
         <br />
-        {start_at}~{end_at}
+        {startDate}~{endDate}
       </ShowInfo>
     </CardWrapper>
   );
