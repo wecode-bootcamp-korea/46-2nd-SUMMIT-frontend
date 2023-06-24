@@ -15,10 +15,16 @@ const showcard = css`
   height: 75px;
 `;
 
+const nav = css`
+  width: 80px;
+  height: 20px;
+`;
+
 const table = {
   large,
   medium,
   showcard,
+  nav,
 };
 
 export const ButtonStyle = styled.button`

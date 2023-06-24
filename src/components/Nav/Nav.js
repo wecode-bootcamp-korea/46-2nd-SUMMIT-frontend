@@ -129,15 +129,28 @@ export const UserModal = styled.div`
 export const SecondModal = styled.div`
   position: absolute;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
   top: 90px;
   right: 30px;
-  width: 220px;
-  height: 180px;
+  width: 300px;
   border: 1px solid lightgray;
   z-index: 1;
   background-color: white;
+`;
+
+export const WishItem = styled.div`
+  width: 100%;
+  margin: auto;
+  padding: 10px;
+  border: 1px solid black;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+`;
+
+export const WishImg = styled.img`
+  width: 50px;
+  height: 50px;
 `;
 
 export const ModalClose = styled.span`
@@ -175,4 +188,18 @@ export const UnderLines = styled.div`
   line-height: 1px;
   text-align: center;
   top: 40px;
+`;
+
+export const WishListLength = styled.div`
+  width: 16px;
+  height: 16px;
+  font-size: 16px;
+  align-self: flex-end;
+`;
+
+export const WishListContainer = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 `;

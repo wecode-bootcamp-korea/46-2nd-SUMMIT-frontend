@@ -22,7 +22,7 @@ const Oauth = () => {
       .then(res => res.json())
       .then(data => {
         if (data.access_token) {
-          fetch(APIS.login, {
+          fetch(`${APIS.login}`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json;charset=utf-8',
