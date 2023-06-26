@@ -51,7 +51,8 @@ export const Description = styled.div`
 `;
 
 export const LoginLinkBtn = styled.button`
-  background-color: yellow;
+  background-color: #fee500;
+  color: #000000 85%;
   height: 45px;
   width: 140px;
   border: none;

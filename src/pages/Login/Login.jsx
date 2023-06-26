@@ -1,12 +1,6 @@
 import React from 'react';
 
-import {
-  LoginPage,
-  LoginContainer,
-  MainTitle,
-  Description,
-  LoginLinkBtn,
-} from './Login';
+import { LoginPage, LoginContainer, MainTitle, Description } from './Login';
 
 const Login = () => {
   const REST_API_KEY = process.env.REACT_APP_REST_API_KEY;
@@ -19,7 +13,7 @@ const Login = () => {
         <MainTitle>로그인</MainTitle>
         <Description>Search Ur Musical in SUM</Description>
         <a href={KAKAO_AUTH_URI}>
-          <LoginLinkBtn>카카오톡 간편 로그인</LoginLinkBtn>
+          <img src="image/KakaoBtn.png" alt="KakaoLoginBtn" />
         </a>
       </LoginContainer>
     </LoginPage>
