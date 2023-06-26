@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { APIS } from '../../../config.js';
-import { LoginPage } from '../Login';
+import { OauthPage, LoadingMessage } from './Oauth';
+import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 
 const Oauth = () => {
   const navigate = useNavigate();
@@ -40,7 +41,12 @@ const Oauth = () => {
       });
   }, []);
 
-  return <LoginPage />;
+  return (
+    <OauthPage>
+      <AiOutlineLoading3Quarters size={30} color="white" />
+      <LoadingMessage>로그인 후 메인페이지로 이동합니다.</LoadingMessage>
+    </OauthPage>
+  );
 };
 
 export default Oauth;
