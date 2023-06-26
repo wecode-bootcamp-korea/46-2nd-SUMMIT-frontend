@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { APIS } from '../../config';
 import {
   CardWrapper,
   CardImg,
@@ -7,36 +9,45 @@ import {
   ShowInfo,
   CardFunction,
 } from './Card';
-import likeSrc from '../../assets/heart.png';
-import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
-import Button from '../../components/Button/Button.jsx';
+import Button from '../Button/Button.jsx';
 
 const Card = ({ show }) => {
-  const { imageUrl, showId, title, theaterNames, startDate, endDate } = show;
-
   const navigate = useNavigate();
   const [isClicked, setIsClicked] = useState(false);
   const token = localStorage.getItem('token');
+  const { wishId, imageUrl, showId, title, theaterNames, startDate, endDate } =
+    show;
 
-  function handleLike() {
+  const handleLike = id => {
     setIsClicked(prev => !prev);
-    !isClicked &&
-      fetch('http://10.58.52.53:8080/wishs/create', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json;charset=utf-8',
-          Authorization: token,
-        },
-        body: JSON.stringify({ showId: 4 }),
-      }).then(res => res.json());
-  }
+    isClicked
+      ? fetch(`${APIS.wish}?wishId=${id}`, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            Authorization: token,
+          },
+        }).then(res => {
+          if (res.status === 204) {
+            return;
+          }
+        })
+      : fetch(`${APIS.wish}/create`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            Authorization: token,
+          },
+          body: JSON.stringify({ showId: showId }),
+        }).then(res => res.json());
+  };
+
   return (
     <CardWrapper>
       <CardImg src={imageUrl} />
       <CardFunction>
         <CardLike>
-          <LikeImg src={likeSrc} onClick={handleLike} />
+          <LikeImg clicked={isClicked} onClick={() => handleLike(wishId)} />
         </CardLike>
         <Button
           size="showcard"
