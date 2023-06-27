@@ -1,13 +1,15 @@
 import styled, { css } from 'styled-components';
 
 export const Category = styled.div`
-  color: black;
-  margin: 10px 3px;
+  color: gray;
+  margin: 10px 5px 10px 0;
+  font-size: 14px;
   ${props =>
     props.title === 'subject' &&
     css`
+      color: black;
       font-size: 25px;
-      margin: 40px 0;
+      margin: 20px 0;
     `}
 `;
 
@@ -28,5 +30,6 @@ export const FlexBox = styled.div`
 `;
 
 export const Content = styled.div`
-  margin: 40px 0 30px 0;
+  white-space: pre-wrap;
+  margin: 60px 0 50px 0;
 `;

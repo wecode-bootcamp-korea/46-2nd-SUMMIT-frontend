@@ -1,17 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { debateBox } from '../../../Recoil/CommunityAtom.jsx';
+import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 
 const DebateCard = () => {
-  return (
-    <LinkTo to="/community/7">
-      <Card>
-        <Img src="https://images.unsplash.com/photo-1460723237483-7a6dc9d0b212?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" />
-        <Title>아이돌이 주연배우로 괜찮은가?</Title>
-        <Comment>댓글수 1</Comment>
-      </Card>
-    </LinkTo>
-  );
+  const debateValue = useRecoilValue(debateBox);
+  return debateValue.map(({ imgUrl, imgTitle, id }, index) => {
+    return (
+      <LinkTo to={`/community/debateDetail?debateId=${id}`} key={index}>
+        <Card>
+          <Img src={imgUrl} />
+          <Title>{imgTitle}</Title>
+        </Card>
+      </LinkTo>
+    );
+  });
 };
 
 export default DebateCard;
@@ -34,7 +38,7 @@ const Img = styled.img`
 
 const Card = styled.div`
   padding: 30px 0 20px 0;
-  width: 280px;
+  width: 100%;
   cursor: pointer;
 `;
 

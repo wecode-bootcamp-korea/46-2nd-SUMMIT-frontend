@@ -4,16 +4,9 @@ import styled from 'styled-components';
 
 const Debate = () => {
   return (
-    <>
-      <Flex>
-        <DebateCard />
-        <DebateCard />
-      </Flex>
-      <Flex>
-        <DebateCard />
-        <DebateCard />
-      </Flex>
-    </>
+    <Flex>
+      <DebateCard />
+    </Flex>
   );
 };
 
@@ -21,5 +14,5 @@ export default Debate;
 
 const Flex = styled.div`
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
 `;

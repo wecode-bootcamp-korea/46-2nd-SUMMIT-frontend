@@ -7,44 +7,67 @@ import Writing from './Component/Writing.jsx';
 import Debate from './Component/Debate.jsx';
 import DebateDetail from './Component/DebateDetail.jsx';
 import Button from '../../components/Button/Button.jsx';
-import Dummy from './Component/Dummy.jsx';
+
 import * as Com from './Community.js';
+import { useSearchParams } from 'react-router-dom';
+import { commentBoxAtom, debateBox } from '../../Recoil/CommunityAtom.jsx';
+import { useRecoilState } from 'recoil';
 
 const Community = () => {
   const { id } = useParams();
   const [reviews, setReviews] = useState([]);
-  const articleIds = ['1', '2', '3', '4'];
-  const articleObj = {
-    5: <Debate />,
-    6: <Writing />,
-    7: <DebateDetail />,
-    8: <Detail />,
-  };
+  const articleIds = ['total', 'concert', 'hall', 'ad'];
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [detail, setDetail] = useState({});
+  const [bate, setBate] = useState({});
+
+  const [write, setWrite] = useRecoilState(commentBoxAtom);
+  const [debate, setDebate] = useRecoilState(debateBox);
+
+  const reviewId = searchParams.get('reviewId');
+  const debateId = searchParams.get('debateId');
 
   useEffect(() => {
-    if (id === '1') {
-      setReviews(Dummy);
-    } else if (id === '2') {
+    if (id === 'total') {
+      setReviews(write);
+    } else if (id === 'concert') {
       setReviews(() => {
-        return Dummy.filter(dummy => dummy.category === '공연리뷰');
+        return write.filter(item => item.category === '공연리뷰');
       });
-    } else if (id === '3') {
+    } else if (id === 'hall') {
       setReviews(() => {
-        return Dummy.filter(dummy => dummy.category === '공연장리뷰');
+        return write.filter(item => item.category === '공연장리뷰');
       });
-    } else if (id === '4') {
+    } else if (id === 'ad') {
       setReviews(() => {
-        return Dummy.filter(dummy => dummy.category === '공연홍보');
+        return write.filter(item => item.category === '공연홍보');
       });
     }
-  }, [id]);
 
+    if (reviewId) {
+      setDetail(write.filter(item => item.id === reviewId)[0]);
+    }
+  }, [id, reviewId]);
+
+  useEffect(() => {
+    if (debateId) {
+      setBate(debate.filter(item => item.id === debateId)[0]);
+    }
+  }, [debateId]);
+
+  const articleObj = {
+    debate: <Debate />,
+    writing: <Writing />,
+    updating: <Writing detail={detail} />,
+    debateDetail: <DebateDetail bate={bate} />,
+    detail: <Detail reviews={write} detail={detail} />,
+  };
   return (
     <Com.Page>
       <Com.Flex title="subject">
         <Com.Title>커뮤니티</Com.Title>
         <Com.ButtonBox>
-          <Link to="/community/6">
+          <Link to="/community/writing">
             <Button size="medium" text="글쓰기" />
           </Link>
         </Com.ButtonBox>
@@ -58,7 +81,10 @@ const Community = () => {
             <Com.Input type="text" placeholder="작품명을 입력해주세요" />
             <Com.Click>검색</Com.Click>
           </Com.InputBox>
-          {articleIds.includes(id) && <Article reviews={reviews} />}
+          {articleIds.includes(id) &&
+            reviews.map((review, index) => {
+              return <Article review={review} key={index} />;
+            })}
           {articleObj[id]}
         </Com.Flex>
       </Com.Flex>
