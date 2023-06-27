@@ -1,43 +1,28 @@
 import React from 'react';
 import * as A from './Article';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
 
-const Ariticle = ({ reviews }) => {
+const Article = ({
+  review: { id, category, subject, grade, title, content, date, count },
+}) => {
   return (
-    <>
-      {reviews.map(
-        ({ category, subject, grade, title, cotent, date, count }) => {
-          return (
-            <div key={subject}>
-              <LinkTo to="/community/8">
-                <A.FlexBox>
-                  <A.Category>{category}</A.Category>
-                  <A.Flex>
-                    <A.Category title="flex">{subject}</A.Category>
-                    <div>{grade}</div>
-                  </A.Flex>
-                  <A.Category title="subject">{title}</A.Category>
-                  <div>{cotent}</div>
-                  <A.Flex title="comment">
-                    <div>댓글수{count}</div>
-                    <div>{date}</div>
-                  </A.Flex>
-                </A.FlexBox>
-              </LinkTo>
-            </div>
-          );
-        }
-      )}
-    </>
+    <div key={subject}>
+      <A.LinkTo to={`/community/detail?reviewId=${id}`}>
+        <A.FlexBox>
+          <A.Flex>
+            <A.Category title="flex">{category}</A.Category>
+            <A.Category title="flex">|</A.Category>
+            <A.Category title="flex">{subject}</A.Category>
+            <A.Grade>{'★'.repeat(grade)}</A.Grade>
+          </A.Flex>
+          <A.Category title="subject">{title}</A.Category>
+          <A.Flex title="comment">
+            <div>댓글 0</div>
+            <div>{date}</div>
+          </A.Flex>
+        </A.FlexBox>
+      </A.LinkTo>
+    </div>
   );
 };
 
-export default Ariticle;
-
-const LinkTo = styled(Link)`
-  text-decoration: none;
-  &:visited {
-    color: black;
-  }
-`;
+export default Article;

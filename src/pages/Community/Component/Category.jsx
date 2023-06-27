@@ -4,11 +4,11 @@ import styled from 'styled-components';
 
 export const Category = () => {
   const CATEGORY = [
-    { id: 1, title: '전체' },
-    { id: 2, title: '공연리뷰' },
-    { id: 3, title: '공연장리뷰' },
-    { id: 4, title: '공연홍보' },
-    { id: 5, title: '토론' },
+    { id: 'total', title: '전체' },
+    { id: 'concert', title: '공연리뷰' },
+    { id: 'hall', title: '공연장리뷰' },
+    { id: 'ad', title: '공연홍보' },
+    { id: 'debate', title: '토론' },
   ];
   return (
     <>
