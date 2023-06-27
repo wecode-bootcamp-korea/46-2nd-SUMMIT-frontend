@@ -25,14 +25,13 @@ import SeatBox from './components/SeatBox.jsx';
 import { APIS } from '../../config';
 
 const ShowDetail = () => {
-  const [showDetail, setShowDetail] = useState([]);
+  const [showDetail, setShowDetail] = useState({});
   const [isShowInfoOpen, setIsShowInfoOpen] = useState(true);
   const [isShowSalesOpen, setIsShowSalesOpen] = useState(false);
   const [isShowReviewOpen, setIsShowReviewOpen] = useState(false);
-  // const params = useParams();
-  // const showId = params.showId;
   const { showId } = useParams();
   const navigate = useNavigate();
+  const token = localStorage.getItem('token');
 
   //TODO 공연정보 MOCK
   // useEffect(() => {
@@ -49,13 +48,23 @@ const ShowDetail = () => {
   // }, []);
 
   useEffect(() => {
-    fetch(`${APIS.showList}/${showId}`)
+    fetch(`${APIS.showList}/${showId}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: token,
+      },
+    })
       .then(res => res.json())
       .then(data => setShowDetail(data.showDetail[0]));
   }, []);
 
   if (showDetail.length === 0) {
-    return null;
+    const isData = Object.keys(showDetail).length !== 0;
+
+    if (!isData) {
+      return null;
+    }
   }
 
   const handleShowInfoOnclick = () => {
@@ -73,6 +82,14 @@ const ShowDetail = () => {
     setIsShowInfoOpen(false);
     setIsShowSalesOpen(false);
   };
+
+  const genreMap = {
+    1: '로맨스',
+    2: '코미디',
+    3: '공포',
+    4: '드라마',
+  };
+  const genreValue = genreMap[showDetail.genre];
 
   return (
     <Container>
@@ -93,7 +110,7 @@ const ShowDetail = () => {
             <br />
             {`러닝타임: ${showDetail.runningTime}`}
             <br />
-            {`장르: ${showDetail.genre}`}
+            {`장르: ${genreValue}`}
             <br />
             {`시작날짜: ${showDetail.startDate}`}
             <br />
@@ -131,6 +148,7 @@ const ShowDetail = () => {
     </Container>
   );
 };
+
 export default ShowDetail;
 
 const SALES_INFO = {

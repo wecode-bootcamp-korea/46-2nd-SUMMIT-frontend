@@ -4,15 +4,16 @@ import { useSearchParams } from 'react-router-dom';
 // import { useLocation } from 'react-router-dom';
 const Drop = ({ item }) => {
   const [isChecked, setIsChecked] = useState(false);
-
   const [searchParams, setSearchParams] = useSearchParams();
 
-  useEffect(() => {
-    searchParams.delete('genre');
-    searchParams.delete('region');
-    searchParams.delete('sort');
-    setSearchParams(searchParams);
-  }, []);
+  // useEffect(() => {
+  //   searchParams.delete('genre');
+  //   searchParams.delete('region');
+  //   searchParams.delete('sort');
+  //   setSearchParams(searchParams);
+  // }, []);
+
+  useEffect(() => {});
 
   const handleAppendOnClick = () => {
     if (!searchParams.getAll(item.filter).includes(String(item.id))) {
