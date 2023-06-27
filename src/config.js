@@ -7,4 +7,6 @@ export const APIS = {
   register: `${BASE_URL_L}/showposts/create`,
   showList: `${BASE_URL_K}/shows`,
   showDetail: `${BASE_URL_K}/showDetail`,
+  getPoint: `${BASE_URL_K}/reservations`,
+  checkout: `${BASE_URL_K}/reservations/create`,
 };

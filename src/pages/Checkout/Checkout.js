@@ -66,3 +66,22 @@ export const Textarea = styled.textarea`
   resize: none;
   margin: 10px 0;
 `;
+
+export const Button = styled.button`
+  background-color: #831010;
+  width: 140px;
+  height: 40px;
+  color: white;
+  border: none;
+  border-radius: 2px;
+  transition: background-color 1s ease-in;
+
+  &:hover {
+    background-color: white;
+    color: #831010;
+    border: 1px solid #831010;
+    opacity: 0.8;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+  }
+`;
