@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { lighten, darken } from 'polished';
-import { AiFillCheckCircle, AiOutlineCheckCircle } from 'react-icons/ai';
 export const Container = styled.div`
   width: 100vw;
   margin: 0 auto;
@@ -88,4 +87,9 @@ export const CardListWrap = styled.div`
   max-width: 1440px;
   justify-content: center;
   gap: 8px 12px;
+`;
+
+export const ShowMore = styled.button`
+  width: 100%;
+  height: 50px;
 `;

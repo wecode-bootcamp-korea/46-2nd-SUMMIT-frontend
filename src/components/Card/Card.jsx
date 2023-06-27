@@ -18,6 +18,9 @@ const Card = ({ show }) => {
   const { wishId, imageUrl, showId, title, theaterNames, startDate, endDate } =
     show;
 
+  const newStartDate = startDate.substring(0, 10).replaceAll('-', '.');
+  const newEndDate = endDate.substring(0, 10).replaceAll('-', '.');
+
   const handleLike = id => {
     setIsClicked(prev => !prev);
     isClicked
@@ -62,7 +65,7 @@ const Card = ({ show }) => {
         <br />
         {theaterNames}
         <br />
-        {startDate}~{endDate}
+        {newStartDate}~{newEndDate}
       </ShowInfo>
     </CardWrapper>
   );
