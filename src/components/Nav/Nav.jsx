@@ -168,22 +168,29 @@ const Nav = () => {
 
       {showSecondModal && (
         <SecondModal>
-          {wishListData.length !== 0 &&
+          {wishListData.length !== 0 ? (
             wishListData.map(item => (
-              <div key={item.id}>
-                <Link to={`/showDetail:${item.id}`}>
-                  <WishItem>
-                    <WishImg src={item.image_url} alt="wishListItemPoster" />
-                    {item.title}
-                    <Button
-                      size="nav"
-                      text="삭제하기"
-                      onClick={() => handleDelete(item.id)}
-                    />
-                  </WishItem>
-                </Link>
+              <div
+                key={item.id}
+                onClick={() => {
+                  navigate(`/showDetail/${item.show_id}`);
+                  setShowSecondModal(false);
+                }}
+              >
+                <WishItem>
+                  <WishImg src={item.image_url} alt="wishListItemPoster" />
+                  {item.title}
+                  <Button
+                    size="nav"
+                    text="삭제하기"
+                    onClick={() => handleDelete(item.id)}
+                  />
+                </WishItem>
               </div>
-            ))}
+            ))
+          ) : (
+            <WishItem>아직 좋아요 누른 작품이 없습니다.</WishItem>
+          )}
           <ModalClose onClick={closeSecondModal} />
         </SecondModal>
       )}
