@@ -19,7 +19,8 @@ export const SeatsWrap = styled.div`
   align-items: center;
   border: none;
   padding: 30px;
-  border: 1px solid tomato;
+  border: 2px solid lightgray;
+  border-radius: 10px;
   margin: 10px 0px;
 `;
 
@@ -29,6 +30,7 @@ export const SeatGradeWrap = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  margin-bottom: 15px;
   &:hover {
     cursor: pointer;
   }
@@ -51,6 +53,9 @@ export const SeatInfoWrap = styled.div`
 `;
 
 export const SeatInfo = styled.div`
+  margin-left: 43px;
+  font-size: 22px;
+  font-weight: 900;
   width: 100%;
   display: ${props => (props.isOpen ? 'block' : 'none')};
 `;
@@ -64,19 +69,12 @@ export const DropWrapper = styled.div`
 export const DropButton = styled.button`
   width: 150px;
   height: 30px;
-  background: #ffffff;
+  background: #333333;
   display: flex;
   justify-content: center;
   align-items: center;
   border: none;
-
-  &:hover {
-    background: ${lighten(0.1, '#dfdfdf')};
-    cursor: pointer;
-  }
-  &:active {
-    background: ${darken(0.1, '#dfdfdf')};
-  }
+  color: white;
 `;
 
 export const DropMenu = styled.ul`
@@ -84,7 +82,7 @@ export const DropMenu = styled.ul`
   top: 100%;
   left: 0;
   width: 150px;
-  background-color: #ffffff;
+  background-color: #333333;
   list-style: none;
   margin: 5px 0 0 0;
   display: ${props => (props.isOpen ? 'block' : 'none')};
@@ -105,11 +103,14 @@ export const DropItem = styled.li`
   align-items: center;
   justify-content: center;
   z-index: 10;
+  padding: 6px 0px;
+
   &:hover {
-    background: ${lighten(0.1, '#dfdfdf')};
+    background: ${lighten(0.1, '#333333')};
+    cursor: pointer;
   }
   &:active {
-    background: ${darken(0.1, '#dfdfdf')};
+    background: ${lighten(0.1, '#333333')};
   }
 `;
 
@@ -150,6 +151,6 @@ export const InfoWrap = styled.div`
 `;
 
 export const ArrowDownImg = styled(AiOutlineCaretDown)`
-  width: 30px;
-  height: 30px;
+  width: 20px;
+  height: 20px;
 `;

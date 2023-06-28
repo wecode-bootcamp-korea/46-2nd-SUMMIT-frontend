@@ -5,11 +5,6 @@ export const Container = styled.div`
   margin: 0 auto;
 `;
 
-export const Title = styled.h1`
-  font-size: 20px;
-  font-weight: 600;
-`;
-
 export const Header = styled.header`
   width: 100%;
   height: 50px;

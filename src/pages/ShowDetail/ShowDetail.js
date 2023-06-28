@@ -1,14 +1,20 @@
 import styled from 'styled-components';
+import { AiFillHeart } from 'react-icons/ai';
+import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
   display: flex;
   flex-direction: row;
   width: 100vw;
+  padding: 100px 200px;
+  background-color: #333333;
+  color: white;
 `;
 
 export const MainWrap = styled.div`
   width: 60%;
   height: 100%;
+  flex-grow: 1;
 `;
 
 export const ShowImgWrap = styled.div`
@@ -17,8 +23,7 @@ export const ShowImgWrap = styled.div`
 `;
 
 export const ShowImg = styled.img`
-  width: 400px;
-  height: 400px;
+  height: 660px;
   background-image: url(${props => props.src});
 `;
 
@@ -27,24 +32,42 @@ export const ShowInfoWrap = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 30px;
+  height: 50px;
+  margin-bottom: 50px;
+  margin-top: 70px;
+  position: sticky;
+  top: 0;
+  background-color: #333333;
+  border-bottom: 1px solid white;
+  text-align: center;
 `;
 
 export const ShowInfo = styled.div`
   width: 90px;
   height: 30px;
   margin-right: 10px;
+  padding-bottom: 40px;
+  border-bottom: ${props => (props.isOpen ? '2px solid white' : '')};
+
   &:hover {
     cursor: pointer;
+    border-bottom: 3px solid black;
+  }
+  &:active {
+    border-bottom: 3px solid black;
   }
 `;
 
 export const ShowSales = styled.div`
   width: 90px;
-  margin-right: 10px;
+  margin-left: 10px;
   height: 30px;
+  padding-bottom: 40px;
+  border-bottom: ${props => (props.isOpen ? '2px solid white' : '')};
+
   &:hover {
     cursor: pointer;
+    border-bottom: 3px solid black;
   }
 `;
 
@@ -59,61 +82,113 @@ export const ShowReview = styled.div`
 export const ShowContentsWrap = styled.div`
   width: 100%;
   height: 100%;
+  line-height: 2;
 `;
 
 export const ShowContents = styled.div`
+  font-size: 17px;
   width: 100%;
   height: 100%;
-  display: ${props => (props.isOpen ? 'flex' : 'none')};
   white-space: pre-wrap;
+  margin-bottom: 100px;
 `;
 
 // 여기서부터 Aside Seats div****************************************************************
 export const AsideWrap = styled.div`
   width: 40%;
   height: 100%;
-  overflow-y: auto;
+  position: sticky;
+  top: 0;
+  padding-left: 50px;
 `;
 
 export const SeatBoxsWrap = styled.div`
   width: 100%;
   height: 55%;
-  position: fixed;
-  overflow: scroll;
 `;
 
 export const LikeBtn = styled.button`
-  width: 20%;
+  width: 50%;
   height: 100px;
-  background-color: red;
   border: none;
-`;
-
-export const LikeImg = styled.img`
-  width: 20px;
-  height: 20px;
-  background-image: ${props => props.src};
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background-color: #333333;
+  border: 1px solid white;
+  border-radius: 10px;
 `;
 
 export const ReservationBtn = styled.button`
-  width: 20%;
-  background-color: purple;
+  width: 100%;
+  background-color: #881010;
   height: 100px;
   border: none;
+  color: white;
+  border-radius: 10px;
 `;
 
 export const ShowTitle = styled.div`
-  font-size: 20px;
-  font-weight: 600;
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 50px;
 `;
 
 export const ShowSalesContents = styled.div`
-  display: ${props => (props.isOpen ? 'flex' : 'none')};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 export const ShowReviewContents = styled.div`
   display: ${props => (props.isOpen ? 'flex' : 'none')};
+`;
+
+export const SalesTitle = styled.h1`
+  font-size: 25px;
+  margin-bottom: 30px;
+`;
+
+export const SalesTable = styled.table`
+  width: 100%;
+  height: 400px;
+  font-size: 20px;
+`;
+
+export const Tr = styled.tr`
+  border: 1px solid white;
+  height: 10px;
+`;
+export const Td = styled.td`
+  padding: 5px;
+  border: 1px solid white;
+  text-align: center;
+
+  &:nth-child(odd) {
+    width: 120px;
+    background-color: darkgray;
+  }
+`;
+export const Th = styled.tr`
+  border: 1px solid white;
+`;
+
+export const LikeImg = styled(AiFillHeart)`
+  width: 40px;
+  height: 40px;
+  color: red;
+`;
+
+export const Img = styled.img`
+  width: 100%;
+  height: 100%;
+`;
+
+export const BtnWrap = styled.div`
+  width: 100%;
+  display: flex;
+  margin-top: 30px;
+`;
+
+export const LinkBox = styled(Link)`
+  width: 100%;
+  height: 100%;
+  margin-left: 30px;
 `;

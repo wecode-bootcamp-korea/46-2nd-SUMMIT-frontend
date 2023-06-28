@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 
 export const Flex = styled.div`
   display: flex;
-  margin-bottom: 40px;
+  color: white;
   ${props =>
     props.title === 'subject' &&
     css`
@@ -13,7 +13,7 @@ export const Flex = styled.div`
     props.title === 'article' &&
     css`
       flex-direction: column;
-      margin-left: 85px;
+      margin-left: 185px;
       width: 600px;
     `}
   ${props =>
@@ -33,13 +33,13 @@ export const ExtraFlex = styled.div`
 `;
 
 export const Page = styled.div`
-  width: 970px;
+  width: 100%;
   margin: 0 auto;
 `;
 
 export const Title = styled.div`
   font-size: 40px;
-  margin: 40px 0 60px 0;
+  margin: 50px 0px 0px 500px;
 `;
 
 export const Input = styled.input`
@@ -62,10 +62,11 @@ export const InputBox = styled.div`
 `;
 
 export const ButtonBox = styled.div`
-  margin: 40px 85px 60px 0px;
+  margin: 50px 400px 60px 0px;
 `;
 
 export const Click = styled.button`
+  font-size: 17px;
   border: none;
   background-color: rgb(244, 244, 244);
 `;

@@ -10,6 +10,7 @@ import {
   LinkButton,
   LeftContainer,
   Wrapall,
+  Subject,
 } from './Footer';
 
 const Footer = () => {
@@ -47,50 +48,38 @@ const Footer = () => {
         <RightContainer>
           <Info>
             <a href="##">
-              <p>회사소개</p>
+              <Subject>회사소개</Subject>
             </a>
             <a href="##">
-              <p>채용정보</p>
+              <Subject>채용정보</Subject>
             </a>
             <a href="##">
-              <p>팀블로그</p>
-            </a>
-          </Info>
-          <Info>
-            <a href="##">
-              <p>고객안내</p>
-            </a>
-            <a href="##">
-              <p>이용안내</p>
-            </a>
-            <a href="##">
-              <p>질문FAQ</p>
-            </a>
-            <a href="##">
-              <p>광고문의</p>
+              <Subject>팀블로그</Subject>
             </a>
           </Info>
           <Info>
             <a href="##">
-              <p>고객센터</p>
+              <Subject>고객안내</Subject>
             </a>
             <a href="##">
-              <p>공지사항</p>
+              <Subject>이용안내</Subject>
+            </a>
+            <a href="##">
+              <Subject>질문FAQ</Subject>
+            </a>
+            <a href="##">
+              <Subject>광고문의</Subject>
+            </a>
+          </Info>
+          <Info>
+            <a href="##">
+              <Subject>고객센터</Subject>
+            </a>
+            <a href="##">
+              <Subject>공지사항</Subject>
             </a>
           </Info>
         </RightContainer>
-        <LinkButton>
-          <ImageButtons
-            href="https://www.instagram.com/yum_6579"
-            src="https://user-images.githubusercontent.com/128045089/242558577-7ac98533-0a3a-4d0c-9726-121625ed1ade.jpg"
-            alt="instagram_image"
-          />
-          <ImageButtons
-            href="https://www.facebook.com"
-            src="https://user-images.githubusercontent.com/128045089/242558576-67271c44-cbb5-4cba-a9cd-b96ea3190b8d.jpg"
-            alt="facebook_image"
-          />
-        </LinkButton>
       </FooterWrap>
     </Container>
   );

@@ -107,7 +107,6 @@ const ShowList = () => {
 
   return (
     <Container>
-      <Title>공연찾기</Title>
       <Header>
         <FilterWrap>
           <DropWrapper ref={dropRef}>

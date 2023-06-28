@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams, Link } from 'react-router-dom';
-import likeSrc from '../../assets/like.png';
 import {
   Container,
   MainWrap,
@@ -8,7 +7,6 @@ import {
   AsideWrap,
   ShowInfo,
   ShowSales,
-  ShowReview,
   ShowInfoWrap,
   ShowContents,
   ShowContentsWrap,
@@ -19,18 +17,22 @@ import {
   SeatBoxsWrap,
   ShowTitle,
   ShowSalesContents,
-  ShowReviewContents,
+  SalesTitle,
+  SalesTable,
+  Tr,
+  Td,
+  Img,
+  BtnWrap,
+  LinkBox,
 } from './ShowDetail';
 import SeatBox from './components/SeatBox.jsx';
 import { APIS } from '../../config';
 
 const ShowDetail = () => {
   const [showDetail, setShowDetail] = useState({});
-  const [isShowInfoOpen, setIsShowInfoOpen] = useState(true);
-  const [isShowSalesOpen, setIsShowSalesOpen] = useState(false);
-  const [isShowReviewOpen, setIsShowReviewOpen] = useState(false);
+  const [currentInfo, setCurrentInfo] = useState('공연정보');
+
   const { showId } = useParams();
-  const navigate = useNavigate();
   const token = localStorage.getItem('token');
 
   //TODO 공연정보 MOCK
@@ -40,13 +42,7 @@ const ShowDetail = () => {
   //     .then(data => setShowDetail(data));
   // }, [showId]);
 
-  //TODO 좌석정보 MOCK
-  // useEffect(() => {
-  //   fetch(`/data/seatData.json`)
-  //     .then(res => res.json())
-  //     .then(data => setSeatInfo(data));
-  // }, []);
-
+  // TODO 살려
   useEffect(() => {
     fetch(`${APIS.showList}/${showId}`, {
       method: 'GET',
@@ -56,29 +52,16 @@ const ShowDetail = () => {
       },
     })
       .then(res => res.json())
-      .then(data => setShowDetail(data.showDetail[0] || {}));
+      .then(data => setShowDetail(data.showDetail[0]));
   }, []);
 
   const isData = Object.keys(showDetail).length !== 0;
-
   if (!isData) {
     return null;
   }
 
-  const handleShowInfoOnclick = () => {
-    setIsShowInfoOpen(prev => !prev);
-    setIsShowSalesOpen(false);
-    setIsShowReviewOpen(false);
-  };
-  const handleShowSalesOnclick = () => {
-    setIsShowSalesOpen(prev => !prev);
-    setIsShowInfoOpen(false);
-    setIsShowReviewOpen(false);
-  };
-  const handleShowReviewOnclick = () => {
-    setIsShowReviewOpen(prev => !prev);
-    setIsShowInfoOpen(false);
-    setIsShowSalesOpen(false);
+  const changeInfo = info => {
+    setCurrentInfo(info);
   };
 
   const genreMap = {
@@ -87,7 +70,12 @@ const ShowDetail = () => {
     3: '공포',
     4: '드라마',
   };
+
   const genreValue = genreMap[showDetail.genre];
+
+  const { startDate, endDate } = showDetail;
+  const newStartDate = startDate.substring(0, 10).replaceAll('-', '.');
+  const newEndDate = endDate.substring(0, 10).replaceAll('-', '.');
 
   return (
     <Container>
@@ -96,37 +84,86 @@ const ShowDetail = () => {
           <ShowImg src={showDetail.imageUrl} />
         </ShowImgWrap>
         <ShowInfoWrap>
-          <ShowInfo onClick={handleShowInfoOnclick}>공연정보</ShowInfo>
-          <ShowSales onClick={handleShowSalesOnclick}>판매정보</ShowSales>
-          <ShowReview onClick={handleShowReviewOnclick}>공연리뷰</ShowReview>
+          <ShowInfo
+            onClick={() => changeInfo('공연정보')}
+            isOpen={currentInfo === '공연정보'}
+          >
+            공연정보
+          </ShowInfo>
+          <ShowSales
+            onClick={() => changeInfo('판매정보')}
+            isOpen={currentInfo === '판매정보'}
+          >
+            판매정보
+          </ShowSales>
         </ShowInfoWrap>
         <ShowContentsWrap>
-          <ShowContents isOpen={isShowInfoOpen}>
-            {`공연제목: ${showDetail.title}`}
-            <br />
-            {`공연내용: ${showDetail.showDetail}`}
-            <br />
-            {`러닝타임: ${showDetail.runningTime}`}
-            <br />
-            {`장르: ${genreValue}`}
-            <br />
-            {`시작날짜: ${showDetail.startDate}`}
-            <br />
-            {`종료날짜: ${showDetail.endDate}`}
-            <br />
-          </ShowContents>
-          <ShowSalesContents isOpen={isShowSalesOpen}>
-            판매정보입니다.
-          </ShowSalesContents>
-          <ShowReviewContents isOpen={isShowReviewOpen}>
-            리뷰컴포넌트입니다.
-          </ShowReviewContents>
+          {currentInfo === '공연정보' ? (
+            <>
+              <ShowContents>
+                {`뮤지컬 <${showDetail.title}>`}
+                <br />
+                <br />
+                {`공연내용: ${showDetail.showDetail}`}
+                <br />
+                <br />
+                {`러닝타임: ${showDetail.runningTime}`}
+                <br />
+                <br />
+                {`장르: ${genreValue}`}
+                <br />
+                <br />
+                {`공연기간: ${newStartDate} ~ ${newEndDate}`}
+                <br />
+              </ShowContents>
+              <Img src="https://ticketimage.interpark.com/Play/image/etc/23/23000548-29.jpg" />
+            </>
+          ) : (
+            <ShowSalesContents>
+              {showDetail.title === '빨래' && (
+                <>
+                  <SalesTitle>상품관련 정보</SalesTitle>
+                  <SalesTable>
+                    <Tr>
+                      <Td>주최/기획</Td>
+                      <Td>주식회사 씨에이치수박</Td>
+                      <Td>고객문의</Td>
+                      <Td>02-1234-1234</Td>
+                    </Tr>
+                    <Tr>
+                      <Td>공연시간</Td>
+                      <Td>{showDetail.runningTime}(인터미션:15분)</Td>
+                      <Td>관람등급</Td>
+                      <Td>02-1234-1234</Td>
+                    </Tr>
+                    <Tr>
+                      <Td>주연</Td>
+                      <Td>
+                        강연정, 박은미, 장혜민,
+                        <br /> 조상웅, 문남권, 강기헌,
+                        <br /> 최정화, 진미사, 조영임,
+                        <br /> 양미경, 백지예
+                      </Td>
+                      <Td>공연장소</Td>
+                      <Td>{showDetail.theaterNames}</Td>
+                    </Tr>
+                    <Tr>
+                      <Td>예매수수료</Td>
+                      <Td>장당 1,000원</Td>
+                      <Td>배송료</Td>
+                      <Td>현장수령 무료 (배송불가)</Td>
+                    </Tr>
+                  </SalesTable>
+                </>
+              )}
+            </ShowSalesContents>
+          )}
         </ShowContentsWrap>
       </MainWrap>
       <AsideWrap>
         <SeatBoxsWrap>
-          <ShowTitle>{`공연제목: ${showDetail.title}`}</ShowTitle>
-          {showDetail.seatsDetail.map(seat => (
+          <ShowTitle>{`뮤지컬 <${showDetail.title}>`}</ShowTitle>
+          {showDetail.seatsDetail.slice(0, 4).map(seat => (
             <SeatBox
               key={seat.id}
               seat={seat}
@@ -135,12 +172,14 @@ const ShowDetail = () => {
               seatsDetail={showDetail.seatsDetail}
             />
           ))}
-          <LikeBtn>
-            <LikeImg src={likeSrc} />
-          </LikeBtn>
-          <Link to="/reservation">
-            <ReservationBtn>예매하기</ReservationBtn>
-          </Link>
+          <BtnWrap>
+            <LikeBtn>
+              <LikeImg />
+            </LikeBtn>
+            <LinkBox to="/reservation">
+              <ReservationBtn>예매하기</ReservationBtn>
+            </LinkBox>
+          </BtnWrap>
         </SeatBoxsWrap>
       </AsideWrap>
     </Container>

@@ -38,14 +38,14 @@ const Container = styled.div`
   padding-top: 80px;
   height: 300px;
   width: 100%;
-  background-color: #881010;
+  background-color: white;
 `;
 
 const Button = styled.a`
-  background-color: #881010;
+  background-color: white;
   color: #fff;
   padding: 10px 20px;
-  border: 1px solid white;
+  border: 1px solid black;
   border-radius: 5px;
   margin: 10px;
   cursor: pointer;
