@@ -14,7 +14,7 @@ const Bestonboard = () => {
   const [Bestonboard, setBestonboard] = useState([]);
 
   useEffect(() => {
-    fetch(`${APIS.showList}/?orderby=startDesc`)
+    fetch(`${APIS.showList}/?orderBy=startDesc`)
       .then(res => res.json())
       .then(data => setBestonboard(data.shows));
   }, []);
@@ -34,12 +34,14 @@ const Bestonboard = () => {
     }
   };
 
+  const limitBestonboard = Bestonboard.slice(0, 5);
+
   return (
     <Container>
       <SectionTitle>따끈따끈 신상이야</SectionTitle>
       <MusicalCardContainer>
         <CardListWrap>
-          {Bestonboard.map(show => (
+          {limitBestonboard.map(show => (
             <Card
               key={show.id}
               show={show}
@@ -88,9 +90,9 @@ const CardListWrap = styled.div`
   width: 100%;
   display: grid;
   grid-template-columns: repeat(5, 200px);
-  grid-template-rows: 400px;
+  grid-template-rows: 300px;
   margin: 80px;
   max-width: 1440px;
   justify-content: center;
-  gap: 8px 12px;
+  gap: 10px 30px;
 `;

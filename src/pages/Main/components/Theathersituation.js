@@ -6,20 +6,28 @@ const Theathersituation = () => {
     <Container>
       <Theatherstatus>전국공연장 및 공연 현황</Theatherstatus>
       <SmallContainer>
-        <Button href="/showList?region=서울">서울</Button>
-        <Button href="/showList?region=경기">경기</Button>
-        <Button href="/showList?region=인천">인천</Button>
-        <Button>부산</Button>
-        <Button>대전</Button>
-        <Button>울산</Button>
-        <Button href="/showList?region=강원">강원</Button>
-        <Button>광주</Button>
+        {THEATHER_INFO_LIST.map(info => (
+          <Button key={(info.id, info.link)}>
+            <a href={info.link}>{info.text}</a>
+          </Button>
+        ))}
       </SmallContainer>
     </Container>
   );
 };
 
 export default Theathersituation;
+
+const THEATHER_INFO_LIST = [
+  { id: 1, link: '/showList?address=서울', text: '서울' },
+  { id: 2, link: '/showList?address=경기', text: '경기' },
+  { id: 3, link: '/showList?address=인천', text: '인천' },
+  { id: 4, link: '##', text: '부산' },
+  { id: 5, link: '##', text: '대전' },
+  { id: 6, link: '/showList?address=강원', text: '강원' },
+  { id: 7, link: '##', text: '울산' },
+  { id: 8, link: '##', text: '광주' },
+];
 
 const Container = styled.div`
   position: relative;

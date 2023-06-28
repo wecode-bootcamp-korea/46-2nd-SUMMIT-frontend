@@ -37,20 +37,20 @@ const Nav = () => {
   const [wishListData, setWishListData] = useState([]);
   const token = localStorage.getItem('token');
 
-  // const getWishItem = () => {
-  //   fetch(`${APIS.wish}`, {
-  //     headers: {
-  //       'Content-Type': 'application/json;charset=utf-8',
-  //       Authorization: token,
-  //     },
-  //   })
-  //     .then(res => res.json())
-  //     .then(data => setWishListData(data.wishData.result));
-  // };
+  const getWishItem = () => {
+    fetch(`${APIS.wish}`, {
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: token,
+      },
+    })
+      .then(res => res.json())
+      .then(data => setWishListData(data.wishData.result));
+  };
 
-  // useEffect(() => {
-  //   getWishItem();
-  // }, []);
+  useEffect(() => {
+    getWishItem();
+  }, []);
 
   useEffect(() => {
     const token = window.localStorage.getItem('token');
@@ -83,7 +83,7 @@ const Nav = () => {
       },
     }).then(res => {
       if (res.status === 204) {
-        // getWishItem();
+        getWishItem();
         return;
       }
     });
@@ -136,7 +136,7 @@ const Nav = () => {
         {isLoggedIn ? (
           <MypageButton>
             {isCreator ? (
-              <ContentsWriter href="##">공연등록</ContentsWriter>
+              <ContentsWriter href="/register">공연등록</ContentsWriter>
             ) : (
               <WishListContainer>
                 <AiOutlineHeart onClick={handleSecondModalClick} />

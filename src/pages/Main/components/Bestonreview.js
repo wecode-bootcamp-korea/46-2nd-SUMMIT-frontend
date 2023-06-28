@@ -4,19 +4,19 @@ import styled from 'styled-components';
 import { APIS } from '../../../config';
 import Card from '../../../components/Card/Card.jsx';
 
-const Bestonreview = () => {
+const BestOnReview = () => {
   const navigate = useNavigate();
 
   const handleImageClick = id => {
     navigate(`productslist?musicalId=${id}`);
   };
 
-  const [bestonreview, setBestonreview] = useState([]);
+  const [bestOnReview, setBestOnReview] = useState([]);
 
   useEffect(() => {
-    fetch(`${APIS.showList}/?orderby=ratingDesc`)
+    fetch(`${APIS.showList}/?orderBy=ratingDesc`)
       .then(res => res.json())
-      .then(data => setBestonreview(data.shows));
+      .then(data => setBestOnReview(data.shows));
   }, []);
 
   const handleLike = (showId, isClicked) => {
@@ -33,13 +33,14 @@ const Bestonreview = () => {
       }).then(res => res.json());
     }
   };
+  const LimitBestOnReview = bestOnReview.slice(0, 5);
 
   return (
     <Container>
       <SectionTitle>인기많은 뮤지컬</SectionTitle>
       <MusicalCardContainer>
         <CardListWrap>
-          {bestonreview.map(show => (
+          {LimitBestOnReview.map(show => (
             <Card
               key={show.id}
               show={show}
@@ -53,7 +54,7 @@ const Bestonreview = () => {
   );
 };
 
-export default Bestonreview;
+export default BestOnReview;
 
 const Container = styled.div`
   min-width: 1600px;
@@ -63,7 +64,7 @@ const Container = styled.div`
   justify-content: center;
   padding-top: 80px;
   padding-bottom: 80px;
-  background-color: white;
+  background-color: lightgray;
 `;
 
 const SectionTitle = styled.h1`
@@ -88,9 +89,9 @@ const CardListWrap = styled.div`
   width: 100%;
   display: grid;
   grid-template-columns: repeat(5, 200px);
-  grid-template-rows: 400px;
+  grid-template-rows: 300px;
   margin: 80px;
   max-width: 1440px;
   justify-content: center;
-  gap: 8px 12px;
+  gap: 10px 30px;
 `;

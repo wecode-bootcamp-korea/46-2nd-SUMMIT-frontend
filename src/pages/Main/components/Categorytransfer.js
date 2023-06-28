@@ -8,25 +8,24 @@ import styled from 'styled-components';
 const Categorytransfer = () => {
   return (
     <Container>
-      <a href="/showList?genre=1">
-        <Imagepic className="ui" src={romancepic} alt="romancepicture" />
-        <Letter>로맨스</Letter>
-      </a>
-      <a href="/showList?genre=2">
-        <Imagepic className="ui" src={comedypic} alt="comedypicture" />
-        <Letter>코미디</Letter>
-      </a>
-      <a href="/showList?genre=3">
-        <Imagepic className="ui" src={fearpic} alt="fearpicture" />
-        <Letter>공포</Letter>
-      </a>
-      <a href="/showList?genre=4">
-        <Imagepic className="ui" src={dramapic} alt="dramapicture" />
-        <Letter>드라마</Letter>
-      </a>
+      {SHOWLIST_LINK_LIST.map(item => (
+        <a key={item.id} href={item.link}>
+          <ImagePic src={item.src} />
+          <Letter>{item.text}</Letter>
+        </a>
+      ))}
     </Container>
   );
 };
+
+export default Categorytransfer;
+
+const SHOWLIST_LINK_LIST = [
+  { id: 1, src: romancepic, link: '/showList?genreId=1', text: '로맨스' },
+  { id: 2, src: comedypic, link: '/showList?genreId=2', text: '코미디' },
+  { id: 3, src: fearpic, link: '/showList?genreId=3', text: '공포' },
+  { id: 4, src: dramapic, link: '/showList?genreId=4', text: '드라마' },
+];
 
 const Container = styled.div`
   position: relative;
@@ -41,7 +40,7 @@ const Container = styled.div`
   width: 100%;
 `;
 
-const Imagepic = styled.img`
+const ImagePic = styled.img`
   position: relative;
   margin-top: 70px;
   margin-left: 100px;
@@ -61,5 +60,3 @@ const Letter = styled.p`
   font-size: 20px;
   color: white;
 `;
-
-export default Categorytransfer;
