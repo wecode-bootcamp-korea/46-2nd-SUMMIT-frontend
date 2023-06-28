@@ -59,94 +59,92 @@ const ShowDetail = () => {
       .then(data => setShowDetail(data.showDetail[0] || {}));
   }, []);
 
-  if (showDetail.length === 0) {
-    const isData = Object.keys(showDetail).length !== 0;
+  const isData = Object.keys(showDetail).length !== 0;
 
-    if (!isData) {
-      return null;
-    }
-
-    const handleShowInfoOnclick = () => {
-      setIsShowInfoOpen(prev => !prev);
-      setIsShowSalesOpen(false);
-      setIsShowReviewOpen(false);
-    };
-    const handleShowSalesOnclick = () => {
-      setIsShowSalesOpen(prev => !prev);
-      setIsShowInfoOpen(false);
-      setIsShowReviewOpen(false);
-    };
-    const handleShowReviewOnclick = () => {
-      setIsShowReviewOpen(prev => !prev);
-      setIsShowInfoOpen(false);
-      setIsShowSalesOpen(false);
-    };
-
-    const genreMap = {
-      1: '로맨스',
-      2: '코미디',
-      3: '공포',
-      4: '드라마',
-    };
-    const genreValue = genreMap[showDetail.genre];
-
-    return (
-      <Container>
-        <MainWrap>
-          <ShowImgWrap>
-            <ShowImg src={showDetail.imageUrl} />
-          </ShowImgWrap>
-          <ShowInfoWrap>
-            <ShowInfo onClick={handleShowInfoOnclick}>공연정보</ShowInfo>
-            <ShowSales onClick={handleShowSalesOnclick}>판매정보</ShowSales>
-            <ShowReview onClick={handleShowReviewOnclick}>공연리뷰</ShowReview>
-          </ShowInfoWrap>
-          <ShowContentsWrap>
-            <ShowContents isOpen={isShowInfoOpen}>
-              {`공연제목: ${showDetail.title}`}
-              <br />
-              {`공연내용: ${showDetail.showDetail}`}
-              <br />
-              {`러닝타임: ${showDetail.runningTime}`}
-              <br />
-              {`장르: ${genreValue}`}
-              <br />
-              {`시작날짜: ${showDetail.startDate}`}
-              <br />
-              {`종료날짜: ${showDetail.endDate}`}
-              <br />
-            </ShowContents>
-            <ShowSalesContents isOpen={isShowSalesOpen}>
-              판매정보입니다.
-            </ShowSalesContents>
-            <ShowReviewContents isOpen={isShowReviewOpen}>
-              리뷰컴포넌트입니다.
-            </ShowReviewContents>
-          </ShowContentsWrap>
-        </MainWrap>
-        <AsideWrap>
-          <SeatBoxsWrap>
-            <ShowTitle>{`공연제목: ${showDetail.title}`}</ShowTitle>
-            {showDetail.seatsDetail.map(seat => (
-              <SeatBox
-                key={seat.id}
-                seat={seat}
-                title={showDetail.title}
-                showId={showId}
-                seatsDetail={showDetail.seatsDetail}
-              />
-            ))}
-            <LikeBtn>
-              <LikeImg src={likeSrc} />
-            </LikeBtn>
-            <Link to="/reservation">
-              <ReservationBtn>예매하기</ReservationBtn>
-            </Link>
-          </SeatBoxsWrap>
-        </AsideWrap>
-      </Container>
-    );
+  if (!isData) {
+    return null;
   }
+
+  const handleShowInfoOnclick = () => {
+    setIsShowInfoOpen(prev => !prev);
+    setIsShowSalesOpen(false);
+    setIsShowReviewOpen(false);
+  };
+  const handleShowSalesOnclick = () => {
+    setIsShowSalesOpen(prev => !prev);
+    setIsShowInfoOpen(false);
+    setIsShowReviewOpen(false);
+  };
+  const handleShowReviewOnclick = () => {
+    setIsShowReviewOpen(prev => !prev);
+    setIsShowInfoOpen(false);
+    setIsShowSalesOpen(false);
+  };
+
+  const genreMap = {
+    1: '로맨스',
+    2: '코미디',
+    3: '공포',
+    4: '드라마',
+  };
+  const genreValue = genreMap[showDetail.genre];
+
+  return (
+    <Container>
+      <MainWrap>
+        <ShowImgWrap>
+          <ShowImg src={showDetail.imageUrl} />
+        </ShowImgWrap>
+        <ShowInfoWrap>
+          <ShowInfo onClick={handleShowInfoOnclick}>공연정보</ShowInfo>
+          <ShowSales onClick={handleShowSalesOnclick}>판매정보</ShowSales>
+          <ShowReview onClick={handleShowReviewOnclick}>공연리뷰</ShowReview>
+        </ShowInfoWrap>
+        <ShowContentsWrap>
+          <ShowContents isOpen={isShowInfoOpen}>
+            {`공연제목: ${showDetail.title}`}
+            <br />
+            {`공연내용: ${showDetail.showDetail}`}
+            <br />
+            {`러닝타임: ${showDetail.runningTime}`}
+            <br />
+            {`장르: ${genreValue}`}
+            <br />
+            {`시작날짜: ${showDetail.startDate}`}
+            <br />
+            {`종료날짜: ${showDetail.endDate}`}
+            <br />
+          </ShowContents>
+          <ShowSalesContents isOpen={isShowSalesOpen}>
+            판매정보입니다.
+          </ShowSalesContents>
+          <ShowReviewContents isOpen={isShowReviewOpen}>
+            리뷰컴포넌트입니다.
+          </ShowReviewContents>
+        </ShowContentsWrap>
+      </MainWrap>
+      <AsideWrap>
+        <SeatBoxsWrap>
+          <ShowTitle>{`공연제목: ${showDetail.title}`}</ShowTitle>
+          {showDetail.seatsDetail.map(seat => (
+            <SeatBox
+              key={seat.id}
+              seat={seat}
+              title={showDetail.title}
+              showId={showId}
+              seatsDetail={showDetail.seatsDetail}
+            />
+          ))}
+          <LikeBtn>
+            <LikeImg src={likeSrc} />
+          </LikeBtn>
+          <Link to="/reservation">
+            <ReservationBtn>예매하기</ReservationBtn>
+          </Link>
+        </SeatBoxsWrap>
+      </AsideWrap>
+    </Container>
+  );
 };
 
 export default ShowDetail;
