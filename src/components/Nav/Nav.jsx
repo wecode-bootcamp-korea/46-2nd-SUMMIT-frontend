@@ -45,7 +45,11 @@ const Nav = () => {
       },
     })
       .then(res => res.json())
-      .then(data => setWishListData(data.wishData.result));
+      .then(data => {
+        if (data.wishData !== undefined) {
+          setWishListData(data.wishData.result);
+        }
+      });
   };
 
   useEffect(() => {
@@ -84,7 +88,6 @@ const Nav = () => {
     }).then(res => {
       if (res.status === 204) {
         getWishItem();
-        return;
       }
     });
   };
@@ -168,20 +171,17 @@ const Nav = () => {
         <SecondModal>
           {wishListData.length !== 0 ? (
             wishListData.map(item => (
-              <div
-                key={item.id}
-                onClick={() => {
-                  navigate(`/showDetail/${item.show_id}`);
-                  setShowSecondModal(false);
-                }}
-              >
+              <div key={item.id}>
                 <WishItem>
                   <WishImg src={item.image_url} alt="wishListItemPoster" />
                   {item.title}
                   <Button
                     size="nav"
                     text="삭제하기"
-                    onClick={() => handleDelete(item.id)}
+                    onClick={() => {
+                      handleDelete(item.wishId);
+                      setShowSecondModal(false);
+                    }}
                   />
                 </WishItem>
               </div>
