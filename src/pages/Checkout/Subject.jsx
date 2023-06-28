@@ -14,15 +14,21 @@ export const Subject = () => {
     { title: '예매시간', content: reservationData[0].time },
     {
       title: '예매좌석',
-      content:
+      content: `VIP석 ${
         checkoutInfo[0].grade === 'VIP석'
           ? `${checkoutInfo[0].selectedTicket}석`
-          : checkoutInfo[0].grade === 'R석'
+          : '0석'
+      } R석 ${
+        checkoutInfo[0].grade === 'R석'
           ? `${checkoutInfo[0].selectedTicket}석`
-          : checkoutInfo[0].grade === 'S석'
+          : '0석'
+      } S석 ${
+        checkoutInfo[0].grade === 'S석'
           ? `${checkoutInfo[0].selectedTicket}석`
-          : '0석',
+          : '0석'
+      }`,
     },
+
     {
       title: '좌석가격',
       content:
