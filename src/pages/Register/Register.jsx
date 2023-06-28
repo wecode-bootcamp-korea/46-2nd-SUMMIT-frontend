@@ -26,7 +26,7 @@ const Register = () => {
       body: JSON.stringify({
         ...data,
         startDate: handleDateForm(startDate),
-        endData: handleDateForm(endDate),
+        endDate: handleDateForm(endDate),
       }),
     })
       .then(res => res.json())
@@ -64,12 +64,15 @@ const Register = () => {
           className="showDetail"
         />
         <input {...register('imageUrl')} placeholder="포스터 url" />
-        <input {...register('runningTime')} placeholder="공연시간 (ex. 120)" />
+        <input
+          {...register('runningTime')}
+          placeholder="공연시간 (ex. 120분)"
+        />
         <select {...register('genreId')}>
-          <option value="1">로맨스</option>
-          <option value="2">코미디</option>
-          <option value="3">공포</option>
-          <option value="4">드라마</option>
+          <option value={1}>로맨스</option>
+          <option value={2}>코미디</option>
+          <option value={3}>공포</option>
+          <option value={4}>드라마</option>
         </select>
         <CalendarFilter
           startDate={startDate}
@@ -78,17 +81,13 @@ const Register = () => {
           setEndDate={setEndDate}
         />
         <div className="theater">
-          <select className="region" {...register('theaterRegion')}>
+          <select className="region">
             <option value="서울">서울</option>
             <option value="경기">경기</option>
             <option value="강원">강원</option>
             <option value="제주">제주</option>
           </select>
-          <input
-            className="address"
-            {...register('theaterAddress')}
-            placeholder="공연장명"
-          />
+          <input className="address" placeholder="공연장명" />
         </div>
         <input
           type="text"
