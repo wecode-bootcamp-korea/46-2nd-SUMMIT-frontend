@@ -14,7 +14,7 @@ export const FooterWrap = styled.div`
   padding: 30px;
   min-width: 100%;
   height: 320px;
-  background-color: #efefef;
+  background-color: #333333;
 `;
 
 export const Info = styled.div`
@@ -25,6 +25,7 @@ export const Info = styled.div`
   text-align: center;
   vertical-align: top;
   line-height: 2em;
+  color: white;
 `;
 
 export const Description = styled.div`
@@ -32,7 +33,7 @@ export const Description = styled.div`
   margin-top: 20px;
   font-size: 11px;
   font-weight: 400;
-  color: black;
+  color: white;
   line-height: 16px;
 `;
 
@@ -47,7 +48,7 @@ export const Wrapall = styled.div`
   box-sizing: border-box;
   font-size: 13px;
   font-weight: 400;
-  color: black;
+  color: white;
   line-height: 16px;
 `;
 
@@ -67,7 +68,6 @@ export const RightContainer = styled.div`
   justify-content: flex-end;
   bottom: 0px;
   padding-top: 32px;
-
   height: 170px;
   flex-direction: row;
   line-height: 2em;
@@ -90,4 +90,8 @@ export const LinkButton = styled.div`
   flex-direction: row;
   height: 60px;
   width: 200px;
+`;
+
+export const Subject = styled.p`
+  color: white;
 `;

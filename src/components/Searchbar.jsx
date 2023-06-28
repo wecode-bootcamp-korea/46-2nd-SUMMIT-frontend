@@ -18,13 +18,12 @@ export default SearchBar;
 
 const Searchbarsearching = styled.div`
   padding: 10px;
-  margin-left: 200px;
+  margin-left: 300px;
   display: flex;
   background-color: white;
   position: relative;
   width: 300px;
   height: 40px;
-  margin: 20px auto;
   border: 1px solid #bdc1c6;
   visibility: ${({ show }) => (show ? 'visible' : 'hidden')};
 `;

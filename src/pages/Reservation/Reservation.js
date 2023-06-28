@@ -4,7 +4,7 @@ export const ReservationContainer = styled.div`
   padding: 10px 100px;
   width: 100%;
   margin-left: 500px;
-  height: 100vh;
+  height: 100%;
 `;
 
 export const MainTitle = styled.h1`

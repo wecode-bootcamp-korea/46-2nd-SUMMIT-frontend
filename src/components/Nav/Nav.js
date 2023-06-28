@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Navbar = styled.nav`
   position: relative;
-  background-image: linear-gradient(to right, black, #41474b);
+  background-image: linear-gradient(to right, #333333, #41474b);
   display: flex;
   justify-content: space-between;
   min-width: 1300px;

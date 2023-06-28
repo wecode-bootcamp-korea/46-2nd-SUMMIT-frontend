@@ -66,7 +66,7 @@ const SeatBox = ({ seat, title, showId, seatsDetail }) => {
             <SeatGrade>{grade}</SeatGrade>
           </SeatGradeWrap>
           <InfoWrap>
-            <SeatInfo isOpen={isSeatOpen}>{`가격: ${parseInt(
+            <SeatInfo isOpen={isSeatOpen}>{`${parseInt(
               price
             ).toLocaleString()}원`}</SeatInfo>
             {isSeatOpen && (
