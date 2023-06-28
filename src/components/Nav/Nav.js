@@ -107,6 +107,7 @@ export const UserModal = styled.div`
 export const SecondModal = styled.div`
   position: absolute;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   top: 81px;
@@ -118,7 +119,7 @@ export const SecondModal = styled.div`
 `;
 
 export const WishItem = styled.div`
-  width: 100%;
+  width: 300px;
   margin: auto;
   padding: 10px;
   border: 1px solid black;
