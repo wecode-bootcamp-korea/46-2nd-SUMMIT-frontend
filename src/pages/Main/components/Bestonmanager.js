@@ -4,19 +4,19 @@ import styled from 'styled-components';
 import { APIS } from '../../../config';
 import Card from '../../../components/Card/Card.jsx';
 
-const Bestonmanager = () => {
+const BestOnManager = () => {
   const navigate = useNavigate();
 
   const handleImageClick = id => {
     navigate(`productslist?musicalId=${id}`);
   };
 
-  const [bestonmanager, setBestonmanager] = useState([]);
+  const [bestOnManager, setBestOnManager] = useState([]);
 
   useEffect(() => {
-    fetch(`${APIS.showList}/?orderby=endDesc`)
+    fetch(`${APIS.showList}/?orderBy=endDesc`)
       .then(res => res.json())
-      .then(data => setBestonmanager(data.shows));
+      .then(data => setBestOnManager(data.shows));
   }, []);
 
   const handleLike = (showId, isClicked) => {
@@ -34,12 +34,14 @@ const Bestonmanager = () => {
     }
   };
 
+  const LimitBestonManager = bestOnManager.slice(0, 5);
+
   return (
     <Container>
       <SectionTitle>곧 끝난대! 얼른 보러가자</SectionTitle>
       <MusicalCardContainer>
         <CardListWrap>
-          {bestonmanager.map(show => (
+          {LimitBestonManager.map(show => (
             <Card
               key={show.id}
               show={show}
@@ -53,7 +55,7 @@ const Bestonmanager = () => {
   );
 };
 
-export default Bestonmanager;
+export default BestOnManager;
 
 const Container = styled.div`
   min-width: 1600px;
@@ -88,9 +90,9 @@ const CardListWrap = styled.div`
   width: 100%;
   display: grid;
   grid-template-columns: repeat(5, 200px);
-  grid-template-rows: 400px;
+  grid-template-rows: 300px;
   margin: 80px;
   max-width: 1440px;
   justify-content: center;
-  gap: 8px 12px;
+  gap: 10px 30px;
 `;

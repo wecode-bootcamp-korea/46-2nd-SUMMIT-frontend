@@ -17,10 +17,22 @@ const MainSlider = styled(Slider)`
   .slick-slide {
     width: 100%;
   }
+  .slick-dots {
+    bottom: 28px;
+    .slick-active {
+      button::before {
+        color: #c1c1c1;
+        font-size: 14px;
+      }
+    }
+    button::before {
+      color: #e9e9e9;
+    }
+  }
 `;
 
 const Carousel = () => {
-  const videos = [musicalvideo3, musicalvideo2, musicalvideo1];
+  const Videos = [musicalvideo3, musicalvideo2, musicalvideo1];
 
   const settings = {
     dots: true,
@@ -33,7 +45,7 @@ const Carousel = () => {
   return (
     <Container>
       <MainSlider {...settings}>
-        {videos.map((video, index) => (
+        {Videos.map((video, index) => (
           <MovieCard
             key={index}
             width="560"
@@ -42,7 +54,7 @@ const Carousel = () => {
             frameBorder="0"
             autoPlay
             loop
-            muted={index === 0}
+            muted={(index === 1, 2)}
           />
         ))}
       </MainSlider>
