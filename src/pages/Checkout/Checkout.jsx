@@ -44,7 +44,7 @@ const Checkout = () => {
     })
       .then(response => response.json())
       .then(response => {
-        setUserPoint(Math.floor(response.user[0].point));
+        setUserPoint(Math.floor(response.point));
       });
   }, []);
 
@@ -166,22 +166,21 @@ const Checkout = () => {
         <S.InfTitle>카카오페이</S.InfTitle>
       </S.InfBox>
       <S.Title>결제금액</S.Title>
-
       <S.InfBox>
         <S.InfTitle title="first">티켓금액</S.InfTitle>
-        <S.InfTitle>{checkoutInfo[0].totalPrice}</S.InfTitle>
+        <S.InfTitle>{checkoutInfo[0].totalPrice} 원</S.InfTitle>
       </S.InfBox>
       <S.InfBox>
         <S.InfTitle title="first">포인트사용</S.InfTitle>
-        <S.InfTitle>- {isClickUseBtn ? point : 0} 원</S.InfTitle>
+        <S.InfTitle>- {isClickUseBtn ? point : 0} P</S.InfTitle>
       </S.InfBox>
       <S.InfBox>
         <S.InfTitle title="first">수수료</S.InfTitle>
-        <S.InfTitle>1000 원</S.InfTitle>
+        <S.InfTitle>1,000 원</S.InfTitle>
       </S.InfBox>
       <S.InfBox>
         <S.InfTitle title="first">총결제금액</S.InfTitle>
-        <S.InfTitle>{totalPrice} 원</S.InfTitle>
+        <S.InfTitle>{totalPrice.toLocaleString()} 원</S.InfTitle>
       </S.InfBox>
       <S.Title>이용동의</S.Title>
       <TermList />
