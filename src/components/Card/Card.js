@@ -53,7 +53,7 @@ export const LikeImg = styled.div`
   border: none;
   background: no-repeat;
   background-image: ${props =>
-    props.clicked
+    props.clicked || props.wishId
       ? `url("image/clickedHeart.ico")`
       : `url("image/unclickedHeart.ico")`};
 `;

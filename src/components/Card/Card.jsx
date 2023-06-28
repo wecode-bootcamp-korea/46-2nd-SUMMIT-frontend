@@ -11,12 +11,14 @@ import {
 } from './Card';
 import Button from '../Button/Button.jsx';
 
-const Card = ({ show }) => {
-  const navigate = useNavigate();
-  const [isClicked, setIsClicked] = useState(false);
-  const token = localStorage.getItem('token');
+const Card = ({ show, rerender }) => {
   const { wishId, imageUrl, showId, title, theaterNames, startDate, endDate } =
     show;
+  const wished = wishId === null;
+  const navigate = useNavigate();
+  const [isClicked, setIsClicked] = useState(!wished);
+  const [isWished, setIsWished] = useState(wished);
+  const token = localStorage.getItem('token');
 
   const newStartDate = startDate.substring(0, 10).replaceAll('-', '.');
   const newEndDate = endDate.substring(0, 10).replaceAll('-', '.');
@@ -32,7 +34,7 @@ const Card = ({ show }) => {
           },
         }).then(res => {
           if (res.status === 204) {
-            return;
+            rerender();
           }
         })
       : fetch(`${APIS.wish}/create`, {
@@ -42,7 +44,10 @@ const Card = ({ show }) => {
             Authorization: token,
           },
           body: JSON.stringify({ showId: showId }),
-        }).then(res => res.json());
+        }).then(res => {
+          res.json();
+          rerender();
+        });
   };
 
   return (
@@ -50,7 +55,11 @@ const Card = ({ show }) => {
       <CardImg src={imageUrl} />
       <CardFunction>
         <CardLike>
-          <LikeImg clicked={isClicked} onClick={() => handleLike(wishId)} />
+          <LikeImg
+            wishId={!isWished}
+            clicked={isClicked}
+            onClick={() => handleLike(wishId)}
+          />
         </CardLike>
         <Button
           size="showcard"

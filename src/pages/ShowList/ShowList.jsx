@@ -57,7 +57,7 @@ const ShowList = () => {
   //   }
   // }, [queryString]);
 
-  useEffect(() => {
+  const renderShowList = () => {
     fetch(`${APIS.showList}${queryString}`, {
       method: 'GET',
       headers: {
@@ -67,6 +67,10 @@ const ShowList = () => {
     })
       .then(res => res.json())
       .then(data => setShowList(data.shows));
+  };
+
+  useEffect(() => {
+    renderShowList();
   }, [queryString]);
 
   const dropRef = useRef();
@@ -140,7 +144,12 @@ const ShowList = () => {
         </DropWrapper>
       </Header>
       <CardListWrap>
-        <CardList showList={filteredItem} />
+        <CardList
+          showList={filteredItem}
+          rerender={() => {
+            renderShowList();
+          }}
+        />
       </CardListWrap>
       <ShowMore onClick={appendPagination}>더보기</ShowMore>
     </Container>
