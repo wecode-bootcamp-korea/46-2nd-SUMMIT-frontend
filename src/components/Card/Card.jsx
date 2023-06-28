@@ -9,7 +9,6 @@ import {
   ShowInfo,
   CardFunction,
 } from './Card';
-import Button from '../Button/Button.jsx';
 
 const Card = ({ show, rerender }) => {
   const { wishId, imageUrl, showId, title, theaterNames, startDate, endDate } =
@@ -34,6 +33,7 @@ const Card = ({ show, rerender }) => {
           },
         }).then(res => {
           if (res.status === 204) {
+            setIsWished(prev => !prev);
             rerender();
           }
         })
@@ -46,14 +46,15 @@ const Card = ({ show, rerender }) => {
           body: JSON.stringify({ showId: showId }),
         }).then(res => {
           res.json();
+          setIsWished(prev => !prev);
           rerender();
         });
   };
 
   return (
     <CardWrapper>
-      <CardImg src={imageUrl} />
       <CardFunction>
+        <CardImg src={imageUrl} />
         <CardLike>
           <LikeImg
             wishId={!isWished}
@@ -61,13 +62,6 @@ const Card = ({ show, rerender }) => {
             onClick={() => handleLike(wishId)}
           />
         </CardLike>
-        <Button
-          size="showcard"
-          text="예매"
-          onClick={() => {
-            navigate(`/showDetail/${showId}`);
-          }}
-        />
       </CardFunction>
       <ShowInfo>
         {title}

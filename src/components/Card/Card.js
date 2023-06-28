@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const CardWrapper = styled.div`
   width: 100%;
-
   position: relative;
   border: none;
   display: flex;
@@ -13,17 +12,17 @@ export const CardWrapper = styled.div`
 export const CardImg = styled.img`
   width: 100%;
   height: 400px;
+  border-radius: 20px;
   background-image: ${props => `url(${props.src})`};
 `;
 
 export const CardFunction = styled.div`
+  position: relative;
   display: flex;
   justify-content: flex-end;
 `;
 
 export const CardLike = styled.button`
-  width: 150px;
-  height: 75px;
   left: 0;
   background-color: white;
   border: none;
@@ -47,15 +46,18 @@ export const CardReservation = styled.button`
 `;
 
 export const LikeImg = styled.div`
+  position: absolute;
+  top: 20px;
+  right: 40px;
   background-color: white;
   width: 32px;
   height: 32px;
   border: none;
   background: no-repeat;
   background-image: ${props =>
-    props.clicked || props.wishId
-      ? `url("image/clickedHeart.ico")`
-      : `url("image/unclickedHeart.ico")`};
+    props.wishId || props.clicked
+      ? `url("image/clickedHeart.png")`
+      : `url("image/unclickedHeart.png")`};
 `;
 
 export const ShowInfo = styled.div`

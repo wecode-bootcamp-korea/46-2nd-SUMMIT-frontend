@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { APIS } from '../../../config';
-import Card from '../../../components/Card/Card.jsx';
+import Poster from './Poster.jsx';
 
 const BestOnReview = () => {
   const navigate = useNavigate();
 
   const handleImageClick = id => {
-    navigate(`productslist?musicalId=${id}`);
+    navigate(`/showDetail/${id}`);
   };
 
   const [bestOnReview, setBestOnReview] = useState([]);
@@ -19,20 +19,6 @@ const BestOnReview = () => {
       .then(data => setBestOnReview(data.shows));
   }, []);
 
-  const handleLike = (showId, isClicked) => {
-    const token = localStorage.getItem('token');
-
-    if (!isClicked) {
-      fetch('http://10.58.52.53:8080/wishs/create', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json;charset=utf-8',
-          Authorization: token,
-        },
-        body: JSON.stringify({ showId }),
-      }).then(res => res.json());
-    }
-  };
   const LimitBestOnReview = bestOnReview.slice(0, 5);
 
   return (
@@ -41,11 +27,10 @@ const BestOnReview = () => {
       <MusicalCardContainer>
         <CardListWrap>
           {LimitBestOnReview.map(show => (
-            <Card
+            <Poster
               key={show.id}
               show={show}
-              onClick={() => handleImageClick(show.id)}
-              onLike={handleLike}
+              onClick={() => handleImageClick(show.showId)}
             />
           ))}
         </CardListWrap>
