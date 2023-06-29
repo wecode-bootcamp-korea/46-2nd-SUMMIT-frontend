@@ -2,8 +2,8 @@ import styled, { css } from 'styled-components';
 
 export const Flex = styled.div`
   display: flex;
-  color: black;
   justify-content: center;
+  margin-bottom: 50px;
   ${props =>
     props.title === 'subject' &&
     css`
@@ -63,8 +63,7 @@ export const InputBox = styled.div`
 `;
 
 export const ButtonBox = styled.div`
-  margin-top: 50px;
-  margin-left: 100px;
+  margin: 50px 455px 60px 0px;
 `;
 
 export const Click = styled.button`

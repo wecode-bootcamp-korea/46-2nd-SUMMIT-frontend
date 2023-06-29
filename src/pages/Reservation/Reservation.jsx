@@ -77,11 +77,11 @@ const Reservation = () => {
       {isSubmitted ? (
         <>
           <Category>
-            <CategoryTitle>예매자명: </CategoryTitle>
+            <CategoryTitle>예매자명:</CategoryTitle>
             <CategoryItem>{inputValues.name}</CategoryItem>
           </Category>
           <Category>
-            <CategoryTitle>이메일 주소: </CategoryTitle>
+            <CategoryTitle>메일주소: </CategoryTitle>
             <CategoryItem>
               {inputValues.email}
               <ResetBtn
@@ -97,7 +97,7 @@ const Reservation = () => {
       ) : (
         <>
           <Category>
-            <CategoryTitle>예매자명: </CategoryTitle>
+            <CategoryTitle>예매자명:</CategoryTitle>
             <CategoryItem>
               <Input
                 type="text"
@@ -109,7 +109,7 @@ const Reservation = () => {
             </CategoryItem>
           </Category>
           <Category>
-            <CategoryTitle>이메일 주소: </CategoryTitle>
+            <CategoryTitle>메일주소:</CategoryTitle>
             <form>
               <Input
                 type="text"

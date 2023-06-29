@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
 const reservation = css`
-  width: 250px;
+  width: 400px;
 `;
 
 const componentTable = {
@@ -41,13 +41,15 @@ export const CheckboxLabel = styled.label`
   color: ${props => (props.clicked ? 'white' : 'black')};
   font-weight: 400;
   text-align: center;
+  margin-left: 10px;
+  font-size: 20px;
 `;
 
 export const CheckboxDetail = styled.div`
   display: ${props => (props.clicked ? 'block' : 'none')};
   height: 20px;
-  font-size: 1rem;
   font-weight: 300;
   margin: 5px 0px 5px 30px;
   background-color: transparent;
+  font-size: 20px;
 `;

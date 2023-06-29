@@ -1,10 +1,9 @@
 import styled from 'styled-components';
 
 export const CalendarContainer = styled.div`
-  margin: 40px auto 30px auto;
+  margin: 40px 0px 30px 0px;
   width: 100%;
   position: relative;
-  left: 40px;
 
   .react-datepicker {
     font-family: 'Noto Sans KR', sans-serif;
@@ -24,7 +23,6 @@ export const CalendarContainer = styled.div`
 
     .react-datepicker__month {
       height: 100%;
-      padding: 20px 0;
     }
 
     .react-datepicker__current-month {
@@ -99,6 +97,6 @@ export const CalendarContainer = styled.div`
 `;
 
 export const SelectedDate = styled.span`
-  margin-left: 40px;
   margin-bottom: 50px;
+  border-bottom: 2px solid #dfdfdf;
 `;

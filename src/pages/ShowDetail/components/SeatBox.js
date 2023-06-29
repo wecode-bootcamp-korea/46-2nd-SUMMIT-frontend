@@ -117,11 +117,11 @@ export const DropItem = styled.li`
 export const CheckImg = styled(AiFillCheckCircle)`
   width: 30px;
   height: 30px;
-  color: tomato;
+  color: #831010;
 `;
 
 export const CheckedImg = styled(AiOutlineCheckCircle)`
-  width: 30px;
+  width: 40px;
   height: 30px;
 `;
 
