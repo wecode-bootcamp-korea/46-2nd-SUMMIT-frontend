@@ -25,6 +25,7 @@ const Searchbarsearching = styled.div`
   width: 300px;
   height: 40px;
   border: 1px solid #bdc1c6;
+  border-radius: 18px;
   visibility: ${({ show }) => (show ? 'visible' : 'hidden')};
 `;
 

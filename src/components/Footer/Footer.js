@@ -5,7 +5,6 @@ export const Container = styled.div`
   display: grid;
   min-height: 100%;
   height: auto;
-  min-width: 1300px;
   width: 100%;
 `;
 
@@ -14,7 +13,7 @@ export const FooterWrap = styled.div`
   padding: 30px;
   min-width: 100%;
   height: 320px;
-  background-color: #333333;
+  background-image: linear-gradient(to right, #333333, #41474b);
 `;
 
 export const Info = styled.div`

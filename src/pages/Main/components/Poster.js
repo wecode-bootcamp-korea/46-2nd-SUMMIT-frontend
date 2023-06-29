@@ -19,4 +19,13 @@ export const PosterImg = styled.img`
 export const ShowInfo = styled.div`
   font-size: 15px;
   text-align: center;
+  color: #d4d4d6;
+`;
+
+export const ShowText = styled.div`
+  font-size: 18px;
+  margin-top: 18px;
+  text-align: center;
+  color: #d4d4d6;
+  font-weight: bold;
 `;

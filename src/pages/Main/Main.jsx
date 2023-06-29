@@ -26,5 +26,5 @@ const Wrap = styled.div`
   min-width: 1300px;
   width: 100%;
   align-items: center;
-  background-color: black;
+  background-color: #333333;
 `;
