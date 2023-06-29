@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useRecoilState } from 'recoil';
 import { useSearchParams, useLocation } from 'react-router-dom';
 import useOnClickOutside from '../../hooks/useOnClickOutside';
 import CardList from '../../components/CardList/CardList.jsx';
 import Search from '../../components/Search/Search.jsx';
 import Drop from './Components/Drop.jsx';
+import { ShowListAtom } from '../../Recoil/ShowListAtom.jsx';
 import { APIS } from '../../config';
 import {
   Container,
@@ -23,7 +25,7 @@ const ShowList = () => {
   const [isRegionOpen, setIsRegionOpen] = useState(false);
   const [isSortOpen, setIsSortOpen] = useState(false);
   const token = localStorage.getItem('token');
-  const [showList, setShowList] = useState([]);
+  const [showList, setShowList] = useRecoilState(ShowListAtom);
   const [searchInput, setSearchInput] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const location = useLocation();
@@ -31,12 +33,7 @@ const ShowList = () => {
   const offset = searchParams.get('offset');
   const limit = searchParams.get('limit');
   const [newLimit, setNewLimit] = useState(8);
-  //TODO 공연정보 MOCK
-  // useEffect(() => {
-  //   fetch('/data/showData.json')
-  //     .then(res => res.json())
-  //     .then(data => setShowList(data));
-  // }, []);
+
   const renderShowList = () => {
     fetch(`${APIS.showList}${queryString}`, {
       method: 'GET',

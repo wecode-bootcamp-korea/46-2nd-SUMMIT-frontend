@@ -9,6 +9,7 @@ export const SearchBarWrap = styled.div`
   background-color: #dfdfdf;
   margin-left: 250px;
   margin-right: 250px;
+  border-radius: 18px;
 `;
 
 export const SearchImg = styled(AiOutlineSearch)`
