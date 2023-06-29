@@ -5,7 +5,6 @@ export const Navbar = styled.nav`
   background-image: linear-gradient(to right, #333333, #41474b);
   display: flex;
   justify-content: space-between;
-  min-width: 1300px;
   width: 100%;
   align-items: center;
 `;

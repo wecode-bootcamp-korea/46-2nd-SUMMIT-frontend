@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { PosterWrapper, PosterImg, ShowInfo } from './Poster';
+import { PosterWrapper, PosterImg, ShowInfo, ShowText } from './Poster';
 
 const Poster = ({ show, onClick }) => {
   const { wishId, imageUrl, showId, title, theaterNames, startDate, endDate } =
@@ -14,7 +14,7 @@ const Poster = ({ show, onClick }) => {
     <PosterWrapper>
       <PosterImg src={imageUrl} onClick={onClick} />
       <ShowInfo>
-        {title}
+        <ShowText>{title}</ShowText>
         <br />
         {theaterNames}
         <br />

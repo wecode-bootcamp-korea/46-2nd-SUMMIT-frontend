@@ -23,7 +23,7 @@ const BestOnReview = () => {
 
   return (
     <Container>
-      <SectionTitle>인기많은 뮤지컬</SectionTitle>
+      <SectionTitle>썸남과 같이 보면 좋은 뮤지컬</SectionTitle>
       <MusicalCardContainer>
         <CardListWrap>
           {LimitBestOnReview.map(show => (
@@ -49,7 +49,7 @@ const Container = styled.div`
   justify-content: center;
   padding-top: 80px;
   padding-bottom: 80px;
-  background-color: lightgray;
+  border-top: 1px solid #404040;
 `;
 
 const SectionTitle = styled.h1`
@@ -58,7 +58,7 @@ const SectionTitle = styled.h1`
   font-size: 24px;
   z-index: 1;
   text-align: center;
-  color: black;
+  color: #d4d4d6;
 `;
 
 const MusicalCardContainer = styled.div`

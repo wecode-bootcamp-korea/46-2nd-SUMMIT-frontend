@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const Theathersituation = () => {
   return (
     <Container>
-      <Theatherstatus>전국공연장 및 공연 현황</Theatherstatus>
+      <Theatherstatus>우리 집 근처에서는 어떤 공연이 있을까?</Theatherstatus>
       <SmallContainer>
         {THEATHER_INFO_LIST.map(info => (
           <Button key={(info.id, info.link)}>
@@ -38,30 +38,31 @@ const Container = styled.div`
   padding-top: 80px;
   height: 300px;
   width: 100%;
-  background-color: white;
+  border-top: 1px solid #404040;
+  border-bottom: 1px solid #404040;
 `;
 
 const Button = styled.a`
   background-color: white;
   color: #fff;
   padding: 10px 20px;
-  border: 1px solid black;
   border-radius: 5px;
   margin: 10px;
   cursor: pointer;
   text-decoration: none;
+  height: 46px;
 `;
 
 const Theatherstatus = styled.h1`
   text-align: center;
   margin-bottom: 60px;
   font-size: 24px;
-  color: black;
+  color: #d4d4d6;
 `;
 
 const SmallContainer = styled.div`
   width: 100%;
-  max-width: 1300px;
+  max-width: 900px;
   position: absolute;
   display: flex;
   bottom: 60px;
