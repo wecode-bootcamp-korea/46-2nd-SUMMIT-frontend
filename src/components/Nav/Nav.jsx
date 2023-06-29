@@ -27,6 +27,7 @@ import { BsFillPersonFill } from 'react-icons/bs';
 import { AiOutlineHeart } from 'react-icons/ai';
 import { WishListAtom } from '../../Recoil/WishListAtom.jsx';
 import { ShowListAtom } from '../../Recoil/ShowListAtom.jsx';
+import { ShowDetailAtom } from '../../Recoil/ShowDetailAtom.jsx';
 import Button from '../Button/Button.jsx';
 
 const Nav = () => {
@@ -40,6 +41,7 @@ const Nav = () => {
   const [userId, setUserId] = useState('');
   const [wishListData, setWishListData] = useRecoilState(WishListAtom);
   const [showList, setShowList] = useRecoilState(ShowListAtom);
+  const [showDetail, setShowDetail] = useRecoilState(ShowDetailAtom);
   const token = localStorage.getItem('token');
 
   const getWishItem = () => {
@@ -107,6 +109,7 @@ const Nav = () => {
       }
     });
   };
+
   const closeModal = () => {
     setShowModal(false);
   };

@@ -10,7 +10,6 @@ import {
   ShowInfoWrap,
   ShowContents,
   ShowContentsWrap,
-  LikeImg,
   LikeBtn,
   ReservationBtn,
   ShowImgWrap,
@@ -24,26 +23,23 @@ import {
   Img,
   BtnWrap,
   LinkBox,
+  WishImg,
 } from './ShowDetail';
 import SeatBox from './components/SeatBox.jsx';
+import { WishListAtom } from '../../Recoil/WishListAtom';
+import { ShowDetailAtom } from '../../Recoil/ShowDetailAtom.jsx';
+import { useRecoilState } from 'recoil';
 import { APIS } from '../../config';
 
 const ShowDetail = () => {
-  const [showDetail, setShowDetail] = useState({});
+  const [showDetail, setShowDetail] = useRecoilState(ShowDetailAtom);
   const [currentInfo, setCurrentInfo] = useState('공연정보');
-
   const { showId } = useParams();
   const token = localStorage.getItem('token');
+  const [wishListData, setWishListData] = useRecoilState(WishListAtom);
+  const [isClicked, setIsClicked] = useState(true);
 
-  //TODO 공연정보 MOCK
-  // useEffect(() => {
-  //   fetch(`/data/showData.json`)
-  //     .then(res => res.json())
-  //     .then(data => setShowDetail(data));
-  // }, [showId]);
-
-  // TODO 살려
-  useEffect(() => {
+  const renderShowDetail = () => {
     fetch(`${APIS.showList}/${showId}`, {
       method: 'GET',
       headers: {
@@ -53,8 +49,61 @@ const ShowDetail = () => {
     })
       .then(res => res.json())
       .then(data => setShowDetail(data.showDetail[0]));
+  };
+
+  useEffect(() => {
+    renderShowDetail();
   }, []);
 
+  const handleLike = id => {
+    setIsClicked(prev => !prev);
+    !isClicked
+      ? fetch(`${APIS.wish}?wishId=${id}`, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            Authorization: token,
+          },
+        }).then(res => {
+          if (res.status === 204) {
+            fetch(`${APIS.wish}`, {
+              headers: {
+                'Content-Type': 'application/json;charset=utf-8',
+                Authorization: token,
+              },
+            })
+              .then(res => res.json())
+              .then(data => {
+                if (data.wishData !== undefined) {
+                  setWishListData(data.wishData.result);
+                }
+              });
+          }
+        })
+      : fetch(`${APIS.wish}/create`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            Authorization: token,
+          },
+          body: JSON.stringify({ showId: showId }),
+        }).then(res => {
+          res.json();
+          renderShowDetail();
+          fetch(`${APIS.wish}`, {
+            headers: {
+              'Content-Type': 'application/json;charset=utf-8',
+              Authorization: token,
+            },
+          })
+            .then(res => res.json())
+            .then(data => {
+              if (data.wishData !== undefined) {
+                setWishListData(data.wishData.result);
+              }
+            });
+        });
+  };
   const isData = Object.keys(showDetail).length !== 0;
   if (!isData) {
     return null;
@@ -174,7 +223,12 @@ const ShowDetail = () => {
           ))}
           <BtnWrap>
             <LikeBtn>
-              <LikeImg />
+              <WishImg
+                clicked={!isClicked}
+                onClick={() => {
+                  handleLike(showDetail.wishId);
+                }}
+              />
             </LikeBtn>
             <LinkBox to="/reservation">
               <ReservationBtn>예매하기</ReservationBtn>

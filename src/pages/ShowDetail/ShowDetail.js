@@ -107,7 +107,7 @@ export const SeatBoxsWrap = styled.div`
   height: 55%;
 `;
 
-export const LikeBtn = styled.button`
+export const LikeBtn = styled.div`
   width: 50%;
   height: 100px;
   border: none;
@@ -170,12 +170,6 @@ export const Th = styled.tr`
   border: 1px solid white;
 `;
 
-export const LikeImg = styled(AiFillHeart)`
-  width: 40px;
-  height: 40px;
-  color: red;
-`;
-
 export const Img = styled.img`
   width: 100%;
   height: 100%;
@@ -191,4 +185,19 @@ export const LinkBox = styled(Link)`
   width: 100%;
   height: 100%;
   margin-left: 30px;
+`;
+
+export const WishImg = styled.div`
+  width: 32px;
+  height: 32px;
+  border: none;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: no-repeat;
+  background-image: ${props =>
+    props.clicked
+      ? `url("/image/clickedHeart.png")`
+      : `url("/image/unclickedHeart.png")`};
 `;
