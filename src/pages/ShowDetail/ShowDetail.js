@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 export const Container = styled.div`
   display: flex;
   flex-direction: row;
-  width: 100vw;
+  width: 100%;
   padding: 100px 200px;
   background-color: #333333;
   color: white;

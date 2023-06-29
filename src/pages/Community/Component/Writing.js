@@ -11,6 +11,7 @@ export const Select = styled.select`
   width: 100px;
   border: none;
   outline: none;
+  font-size: 19px;
 `;
 
 export const Click = styled.button`
@@ -18,6 +19,7 @@ export const Click = styled.button`
   border: none;
   background: none;
   color: gray;
+  font-size: 19px;
 `;
 
 export const Input = styled.input`
@@ -25,6 +27,7 @@ export const Input = styled.input`
   border: none;
   border-bottom: 1px solid lightgray;
   outline: none;
+  font-size: 19px;
 `;
 
 export const Text = styled.textarea`

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { lighten, darken } from 'polished';
 export const Container = styled.div`
-  width: 100vw;
+  width: 100%;
   margin: 0 auto;
 `;
 
