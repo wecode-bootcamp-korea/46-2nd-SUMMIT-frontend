@@ -130,6 +130,9 @@ export const WishItem = styled.div`
 export const WishImg = styled.img`
   width: 50px;
   height: 50px;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const ModalClose = styled.span`

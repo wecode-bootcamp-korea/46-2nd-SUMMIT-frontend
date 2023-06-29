@@ -25,13 +25,12 @@ export const LoginContainer = styled.div`
   justify-content: space-around;
   align-items: center;
   position: absolute;
-  width: 350px;
+  width: 450px;
   top: 50%;
   left: 50%;
   height: 400px;
   transform: translate(-50%, -50%);
   margin: auto;
-  border: 1px solid #881010;
   padding: 10px;
   border-radius: 10px;
 `;
@@ -43,10 +42,10 @@ export const MainTitle = styled.h1`
 `;
 
 export const Description = styled.div`
-  font-size: 1rem;
-  font-weight: 300;
+  font-size: 1.7rem;
+  font-weight: 500;
   font-style: italic;
-  margin-bottom: 130px;
+  margin-bottom: 20px;
   color: white;
 `;
 

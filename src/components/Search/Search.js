@@ -10,6 +10,9 @@ export const SearchBarWrap = styled.div`
   margin-left: 250px;
   margin-right: 250px;
   border-radius: 18px;
+  &:focus {
+    outline: 1px solid #830f11;
+  }
 `;
 
 export const SearchImg = styled(AiOutlineSearch)`
@@ -25,8 +28,5 @@ export const SearchBarInput = styled.input`
   outline: none;
   border: none;
   background-color: #dfdfdf;
-
-  &:focus {
-    outline: 1px solid #830f11;
-  }
+  border-radius: 18px;
 `;

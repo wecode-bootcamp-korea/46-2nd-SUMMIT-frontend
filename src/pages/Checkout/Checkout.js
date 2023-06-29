@@ -80,7 +80,7 @@ export const Button = styled.button`
   border: none;
   border-radius: 2px;
   transition: background-color 1s ease-in;
-  margin: 30px 0px 30px 200px;
+  margin: 30px 0px 30px 0px;
 
   &:hover {
     background-color: white;

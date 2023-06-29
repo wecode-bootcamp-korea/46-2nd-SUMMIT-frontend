@@ -11,7 +11,9 @@ const Login = () => {
     <LoginPage>
       <LoginContainer>
         <MainTitle>로그인</MainTitle>
-        <Description>Search Ur Musical in SUM</Description>
+        <Description>
+          Search Ur Musical <br />
+        </Description>
         <a href={KAKAO_AUTH_URI}>
           <img src="image/KakaoBtn.png" alt="KakaoLoginBtn" />
         </a>

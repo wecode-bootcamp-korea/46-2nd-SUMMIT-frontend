@@ -23,7 +23,7 @@ const BestOnManager = () => {
 
   return (
     <Container>
-      <SectionTitle>이거보면 진짜 후회 안할껄??!!</SectionTitle>
+      <SectionTitle>부모님과 함께 보고싶을 때 추천해요 !</SectionTitle>
       <MusicalCardContainer>
         <CardListWrap>
           {LimitBestonManager.map(show => (

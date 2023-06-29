@@ -191,7 +191,13 @@ const Nav = () => {
             wishListData.map(item => (
               <div key={item.id}>
                 <WishItem>
-                  <WishImg src={item.image_url} alt="wishListItemPoster" />
+                  <WishImg
+                    src={item.image_url}
+                    alt="wishListItemPoster"
+                    onClick={() => {
+                      navigate(`showDetail/${item.show_id}`);
+                    }}
+                  />
                   {item.title}
                   <Button
                     size="nav"

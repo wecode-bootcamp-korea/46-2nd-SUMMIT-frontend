@@ -23,7 +23,7 @@ const BestOnReview = () => {
 
   return (
     <Container>
-      <SectionTitle>썸남과 같이 보면 좋은 뮤지컬</SectionTitle>
+      <SectionTitle>썸남썸녀가 보면 좋을 뮤지컬 TOP5</SectionTitle>
       <MusicalCardContainer>
         <CardListWrap>
           {LimitBestOnReview.map(show => (
