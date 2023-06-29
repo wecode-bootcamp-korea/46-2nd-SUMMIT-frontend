@@ -14,6 +14,7 @@ import {
   ResetBtn,
   Input,
 } from './Reservation';
+import Modal from '../../components/Modal/Modal.jsx';
 import Button from '../../components/Button/Button.jsx';
 import Calendar from './Component/Calendar/Calendar.jsx';
 import Checkbox from '../../components/Checkbox/Checkbox.jsx';
@@ -26,7 +27,7 @@ const Reservation = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const navigate = useNavigate();
   const [reservationData, setReservationData] = useRecoilState(ReservationAtom);
-
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const checkoutInfo = useRecoilState(checkoutInfoState);
 
   const handleCheck = text => {
@@ -45,18 +46,34 @@ const Reservation = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    setIsSubmitted(true);
-    setReservationData(prev => ({
-      ...prev,
-      name: inputValues.name,
-      email: inputValues.email,
-    }));
+    if (inputValues.email.includes('@')) {
+      setIsSubmitted(true);
+      setReservationData(prev => ({
+        ...prev,
+        name: inputValues.name,
+        email: inputValues.email,
+      }));
+    } else {
+      setIsModalOpen(true);
+    }
   };
 
   return (
     <ReservationContainer>
       <MainTitle>일정 예약</MainTitle>
       <SubCategory>예매자 정보</SubCategory>
+      {isModalOpen && (
+        <div className="modalLayout">
+          <div className="modalLayer" />
+          <Modal
+            title="이메일 주소 확인"
+            message="이메일 주소를 확인하세요."
+            onClose={() => {
+              setIsModalOpen(false);
+            }}
+          />
+        </div>
+      )}
       {isSubmitted ? (
         <>
           <Category>
@@ -87,6 +104,7 @@ const Reservation = () => {
                 name="name"
                 placeholder="이름을 확인하세요"
                 onChange={handleInput}
+                value={inputValues !== null ? inputValues.name : ''}
               />
             </CategoryItem>
           </Category>
@@ -98,6 +116,7 @@ const Reservation = () => {
                 name="email"
                 placeholder="이메일을 입력하세요"
                 onChange={handleInput}
+                value={inputValues !== null ? inputValues.email : ''}
               />
               <ResetBtn type="submit" onClick={handleSubmit}>
                 제출하기

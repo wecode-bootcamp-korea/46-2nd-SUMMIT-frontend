@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import { APIS } from '../../config';
 import {
   Navbar,
@@ -24,8 +25,8 @@ import Logo from '../../assets/Logodemo.png';
 import SearchBar from '../Searchbar';
 import { BsFillPersonFill } from 'react-icons/bs';
 import { AiOutlineHeart } from 'react-icons/ai';
+import { WishListAtom } from '../../Recoil/WishListAtom.jsx';
 import Button from '../Button/Button.jsx';
-
 const Nav = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -34,9 +35,9 @@ const Nav = () => {
   const [showSecondModal, setShowSecondModal] = useState(false);
   const [isCreator, setIsCreator] = useState(false);
   const [userId, setUserId] = useState('');
-  const [wishListData, setWishListData] = useState([]);
+  const [wishListData, setWishListData] = useRecoilState(WishListAtom);
+  const queryString = location.search;
   const token = localStorage.getItem('token');
-
   const getWishItem = () => {
     fetch(`${APIS.wish}`, {
       headers: {
@@ -51,23 +52,19 @@ const Nav = () => {
         }
       });
   };
-
   useEffect(() => {
     getWishItem();
   }, []);
-
   useEffect(() => {
     const token = window.localStorage.getItem('token');
     setIsLoggedIn(!!token);
     setUserId(token || '');
   }, []);
-
   const handleLogout = () => {
     window.localStorage.removeItem('token');
     setIsLoggedIn(false);
     setUserId('');
   };
-
   const handleUserClick = () => {
     if (showModal && !showSecondModal) {
       setShowModal(false);
@@ -77,7 +74,6 @@ const Nav = () => {
       setShowModal(true);
     }
   };
-
   const handleDelete = id => {
     fetch(`${APIS.wish}?wishId=${id}`, {
       method: 'DELETE',
@@ -91,11 +87,9 @@ const Nav = () => {
       }
     });
   };
-
   const closeModal = () => {
     setShowModal(false);
   };
-
   const handleSecondModalClick = () => {
     if (showSecondModal && !showModal) {
       setShowSecondModal(false);
@@ -105,22 +99,16 @@ const Nav = () => {
       setShowSecondModal(true);
     }
   };
-
   const closeSecondModal = () => {
     setShowSecondModal(false);
   };
-
   const handleCreatorMode = () => {
     setIsCreator(!isCreator);
   };
-
   const isCommunityPage = location.pathname === '/community';
   const isShowListPage = location.pathname === '/showList';
-
   const shouldShowSearchBar = !(isCommunityPage || isShowListPage);
-
   const changeMakerText = isCreator ? '유저 전환' : '관리자 전환';
-
   return (
     <Navbar>
       <Link to="/">
@@ -166,7 +154,6 @@ const Nav = () => {
           <ModalClose onClick={closeModal} />
         </UserModal>
       )}
-
       {showSecondModal && (
         <SecondModal>
           {wishListData.length !== 0 ? (
@@ -195,5 +182,4 @@ const Nav = () => {
     </Navbar>
   );
 };
-
 export default Nav;

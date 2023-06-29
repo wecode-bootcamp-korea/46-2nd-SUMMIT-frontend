@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import { WishListAtom } from '../../Recoil/WishListAtom.jsx';
 import { APIS } from '../../config';
 import {
   CardWrapper,
@@ -18,7 +20,7 @@ const Card = ({ show, rerender }) => {
   const [isClicked, setIsClicked] = useState(!wished);
   const [isWished, setIsWished] = useState(wished);
   const token = localStorage.getItem('token');
-
+  const [wishListData, setWishListData] = useRecoilState(WishListAtom);
   const newStartDate = startDate.substring(0, 10).replaceAll('-', '.');
   const newEndDate = endDate.substring(0, 10).replaceAll('-', '.');
 
@@ -34,7 +36,18 @@ const Card = ({ show, rerender }) => {
         }).then(res => {
           if (res.status === 204) {
             setIsWished(prev => !prev);
-            rerender();
+            fetch(`${APIS.wish}`, {
+              headers: {
+                'Content-Type': 'application/json;charset=utf-8',
+                Authorization: token,
+              },
+            })
+              .then(res => res.json())
+              .then(data => {
+                if (data.wishData !== undefined) {
+                  setWishListData(data.wishData.result);
+                }
+              });
           }
         })
       : fetch(`${APIS.wish}/create`, {
@@ -47,7 +60,18 @@ const Card = ({ show, rerender }) => {
         }).then(res => {
           res.json();
           setIsWished(prev => !prev);
-          rerender();
+          fetch(`${APIS.wish}`, {
+            headers: {
+              'Content-Type': 'application/json;charset=utf-8',
+              Authorization: token,
+            },
+          })
+            .then(res => res.json())
+            .then(data => {
+              if (data.wishData !== undefined) {
+                setWishListData(data.wishData.result);
+              }
+            });
         });
   };
 
