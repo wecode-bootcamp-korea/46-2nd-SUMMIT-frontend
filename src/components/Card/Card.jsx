@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { APIS } from '../../config';
 import {
@@ -9,22 +9,28 @@ import {
   ShowInfo,
   CardFunction,
 } from './Card';
+import { WishListAtom } from '../../Recoil/WishListAtom';
+import { useRecoilState } from 'recoil';
 
 const Card = ({ show, rerender }) => {
   const { wishId, imageUrl, showId, title, theaterNames, startDate, endDate } =
     show;
-  const wished = wishId === null;
+  const [isWished, setIsWished] = useState(true);
+
+  useEffect(() => {
+    setIsWished(wishId === null);
+  }, [wishId]);
+
   const navigate = useNavigate();
-  const [isClicked, setIsClicked] = useState(!wished);
-  const [isWished, setIsWished] = useState(wished);
   const token = localStorage.getItem('token');
+  const [wishListData, setWishListData] = useRecoilState(WishListAtom);
 
   const newStartDate = startDate.substring(0, 10).replaceAll('-', '.');
   const newEndDate = endDate.substring(0, 10).replaceAll('-', '.');
 
   const handleLike = id => {
-    setIsClicked(prev => !prev);
-    isClicked
+    setIsWished(prev => !prev);
+    !isWished
       ? fetch(`${APIS.wish}?wishId=${id}`, {
           method: 'DELETE',
           headers: {
@@ -33,8 +39,19 @@ const Card = ({ show, rerender }) => {
           },
         }).then(res => {
           if (res.status === 204) {
-            setIsWished(prev => !prev);
             rerender();
+            fetch(`${APIS.wish}`, {
+              headers: {
+                'Content-Type': 'application/json;charset=utf-8',
+                Authorization: token,
+              },
+            })
+              .then(res => res.json())
+              .then(data => {
+                if (data.wishData !== undefined) {
+                  setWishListData(data.wishData.result);
+                }
+              });
           }
         })
       : fetch(`${APIS.wish}/create`, {
@@ -46,22 +63,32 @@ const Card = ({ show, rerender }) => {
           body: JSON.stringify({ showId: showId }),
         }).then(res => {
           res.json();
-          setIsWished(prev => !prev);
           rerender();
+          fetch(`${APIS.wish}`, {
+            headers: {
+              'Content-Type': 'application/json;charset=utf-8',
+              Authorization: token,
+            },
+          })
+            .then(res => res.json())
+            .then(data => {
+              if (data.wishData !== undefined) {
+                setWishListData(data.wishData.result);
+              }
+            });
         });
   };
 
   return (
     <CardWrapper>
       <CardFunction>
-        <CardImg src={imageUrl} />
-        <CardLike>
-          <LikeImg
-            wishId={!isWished}
-            clicked={isClicked}
-            onClick={() => handleLike(wishId)}
-          />
-        </CardLike>
+        <CardImg
+          src={imageUrl}
+          onClick={() => {
+            navigate(`/showDetail/${showId}`);
+          }}
+        />
+        <LikeImg wishId={!isWished} onClick={() => handleLike(wishId)} />
       </CardFunction>
       <ShowInfo>
         {title}

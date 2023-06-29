@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import { APIS } from '../../config';
 import {
   Navbar,
@@ -24,17 +25,21 @@ import Logo from '../../assets/Logodemo.png';
 import SearchBar from '../Searchbar';
 import { BsFillPersonFill } from 'react-icons/bs';
 import { AiOutlineHeart } from 'react-icons/ai';
+import { WishListAtom } from '../../Recoil/WishListAtom.jsx';
+import { ShowListAtom } from '../../Recoil/ShowListAtom.jsx';
 import Button from '../Button/Button.jsx';
 
 const Nav = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const queryString = location.search;
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [showSecondModal, setShowSecondModal] = useState(false);
   const [isCreator, setIsCreator] = useState(false);
   const [userId, setUserId] = useState('');
-  const [wishListData, setWishListData] = useState([]);
+  const [wishListData, setWishListData] = useRecoilState(WishListAtom);
+  const [showList, setShowList] = useRecoilState(ShowListAtom);
   const token = localStorage.getItem('token');
 
   const getWishItem = () => {
@@ -87,11 +92,21 @@ const Nav = () => {
       },
     }).then(res => {
       if (res.status === 204) {
-        getWishItem();
+        fetch(`${APIS.showList}${queryString}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            Authorization: token,
+          },
+        })
+          .then(res => res.json())
+          .then(data => {
+            getWishItem();
+            setShowList(data.shows);
+          });
       }
     });
   };
-
   const closeModal = () => {
     setShowModal(false);
   };
