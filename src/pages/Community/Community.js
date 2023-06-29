@@ -2,19 +2,20 @@ import styled, { css } from 'styled-components';
 
 export const Flex = styled.div`
   display: flex;
-  color: white;
+  color: black;
+  justify-content: center;
   ${props =>
     props.title === 'subject' &&
     css`
-      justify-content: space-between;
+      justify-content: space-around;
     `}
 
   ${props =>
     props.title === 'article' &&
     css`
       flex-direction: column;
-      margin-left: 185px;
-      width: 600px;
+      margin-left: 150px;
+      width: 800px;
     `}
   ${props =>
     props.title === 'click' &&
@@ -39,7 +40,7 @@ export const Page = styled.div`
 
 export const Title = styled.div`
   font-size: 40px;
-  margin: 50px 0px 0px 500px;
+  margin-top: 50px;
 `;
 
 export const Input = styled.input`
@@ -62,7 +63,8 @@ export const InputBox = styled.div`
 `;
 
 export const ButtonBox = styled.div`
-  margin: 50px 400px 60px 0px;
+  margin-top: 50px;
+  margin-left: 100px;
 `;
 
 export const Click = styled.button`
