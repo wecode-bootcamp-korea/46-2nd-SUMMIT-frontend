@@ -4,12 +4,17 @@ export const Page = styled.div`
   max-width: ${props => props.title === 'checkout' && '37.5rem'};
   width: ${props => props.title === 'commun' && '60.625rem'};
   margin: 0 auto;
+  margin-top: 50px;
 `;
 
 export const Title = styled.div`
-  font-size: ${props => (props.size === 'big' ? '30px' : '20px')};
+  font-size: ${props => (props.size === 'big' ? '32px' : '24px')};
   padding: ${props =>
     props.size === 'big' ? '40px 0 20px 0' : '60px 0 20px 0'};
+  width: 600px;
+  border-bottom: 2px solid #dfdfdf;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
 `;
 
 export const CheckBox = styled.input.attrs({ type: 'checkbox' })`
@@ -75,6 +80,7 @@ export const Button = styled.button`
   border: none;
   border-radius: 2px;
   transition: background-color 1s ease-in;
+  margin: 30px 0px 30px 200px;
 
   &:hover {
     background-color: white;

@@ -22,7 +22,6 @@ const Router = () => {
           <Route path="/reservation" element={<Reservation />} />
           <Route path="/showDetail/:showId" element={<ShowDetail />} />
           <Route path="/showList" element={<ShowList />} />
-          <Route path="/register" element={<Register />} />
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/oauth" element={<Oauth />} />

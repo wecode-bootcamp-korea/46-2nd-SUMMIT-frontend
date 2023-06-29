@@ -95,7 +95,7 @@ export const RegisterTitle = styled.h1`
 `;
 
 export const ResultMessage = styled.div`
-  font-size: 1rem;
+  font-size: 0.6rem;
   color: white;
   font-style: italic;
   margin-top: 20px;
