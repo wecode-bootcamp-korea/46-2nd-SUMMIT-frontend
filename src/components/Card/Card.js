@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const CardWrapper = styled.div`
   width: 100%;
   position: relative;
+  padding-bottom: 50px;
   border: none;
   display: flex;
   flex-direction: column;
@@ -52,4 +53,12 @@ export const LikeImg = styled.div`
 export const ShowInfo = styled.div`
   font-size: 15px;
   text-align: center;
+`;
+
+export const ShowTextFile = styled.div`
+  font-size: 18px;
+  margin-top: 16px;
+  text-align: center;
+  color: #d4d4d6;
+  font-weight: bold;
 `;
