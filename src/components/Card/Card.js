@@ -7,6 +7,9 @@ export const CardWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const CardImg = styled.img`
@@ -22,20 +25,6 @@ export const CardFunction = styled.div`
   justify-content: flex-end;
 `;
 
-export const CardLike = styled.button`
-  left: 0;
-  background-color: white;
-  border: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
-
-  &:hover {
-    cursor: pointer;
-  }
-`;
-
 export const CardReservation = styled.button`
   width: 50%;
   height: 75px;
@@ -48,7 +37,7 @@ export const CardReservation = styled.button`
 export const LikeImg = styled.div`
   position: absolute;
   top: 20px;
-  right: 40px;
+  right: 20px;
   background-color: white;
   width: 32px;
   height: 32px;
