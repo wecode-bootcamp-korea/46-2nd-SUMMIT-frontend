@@ -6,6 +6,12 @@ const Drop = ({ item }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const { filter, id, list } = item;
 
+  useEffect(() => {
+    const genreParam = searchParams.getAll(filter);
+    const isSelected = genreParam.includes(String(id));
+    setIsChecked(isSelected);
+  }, [searchParams, filter, id]);
+
   const handleAppendOnClick = () => {
     if (!searchParams.getAll(filter).includes(String(id))) {
       searchParams.append(filter, id);
