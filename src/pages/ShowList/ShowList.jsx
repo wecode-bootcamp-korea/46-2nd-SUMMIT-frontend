@@ -15,7 +15,7 @@ import {
   FilterWrap,
   CardListWrap,
   DropItem,
-  ShowMore,
+  ShowMoreBtn,
 } from './ShowList';
 
 const ShowList = () => {
@@ -30,33 +30,13 @@ const ShowList = () => {
   const queryString = location.search;
   const offset = searchParams.get('offset');
   const limit = searchParams.get('limit');
+  const [newLimit, setNewLimit] = useState(8);
   //TODO 공연정보 MOCK
   // useEffect(() => {
   //   fetch('/data/showData.json')
   //     .then(res => res.json())
   //     .then(data => setShowList(data));
   // }, []);
-
-  // const getAllItems = () => {
-  //   fetch(`${APIS.showList}`)
-  //     .then(res => res.json())
-  //     .then(data => setShowList(data.showMain));
-  // };
-
-  // const getFilteredItems = () => {
-  //   fetch(`${APIS.showList}${queryString}`)
-  //     .then(res => res.json())
-  //     .then(data => setShowList(data.shows));
-  // };
-
-  // useEffect(() => {
-  //   if (queryString) {
-  //     getFilteredItems();
-  //   } else {
-  //     getAllItems();
-  //   }
-  // }, [queryString]);
-
   const renderShowList = () => {
     fetch(`${APIS.showList}${queryString}`, {
       method: 'GET',
@@ -101,7 +81,8 @@ const ShowList = () => {
 
   const appendPagination = () => {
     searchParams.set('offset', 0);
-    searchParams.set('limit', Number(limit) + 4);
+    setNewLimit(newLimit + 4);
+    searchParams.set('limit', newLimit + 4);
     setSearchParams(searchParams);
   };
 
@@ -150,7 +131,7 @@ const ShowList = () => {
           }}
         />
       </CardListWrap>
-      <ShowMore onClick={appendPagination}>더보기</ShowMore>
+      <ShowMoreBtn onClick={appendPagination}>Load More Results</ShowMoreBtn>
     </Container>
   );
 };

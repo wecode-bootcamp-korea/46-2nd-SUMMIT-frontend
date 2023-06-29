@@ -6,7 +6,7 @@ export const Container = styled.div`
 `;
 
 export const Header = styled.header`
-  width: 100%;
+  width: 90%;
   height: 50px;
   display: flex;
   justify-content: space-between;
@@ -84,7 +84,16 @@ export const CardListWrap = styled.div`
   gap: 8px 12px;
 `;
 
-export const ShowMore = styled.button`
+export const ShowMoreBtn = styled.button`
   width: 100%;
   height: 50px;
+  background-color: white;
+  border: none;
+
+  &:hover {
+    background: ${darken(0.1, '#dfdfdf')};
+  }
+  &:focus {
+    background: ${darken(0.1, '#dfdfdf')};
+  }
 `;

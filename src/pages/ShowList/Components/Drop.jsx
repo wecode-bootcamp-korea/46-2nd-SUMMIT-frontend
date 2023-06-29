@@ -1,31 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { CheckImg, CheckedImg } from './Drop';
 import { useSearchParams } from 'react-router-dom';
-// import { useLocation } from 'react-router-dom';
 const Drop = ({ item }) => {
   const [isChecked, setIsChecked] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
-
-  // useEffect(() => {
-  //   searchParams.delete('genre');
-  //   searchParams.delete('region');
-  //   searchParams.delete('sort');
-  //   setSearchParams(searchParams);
-  // }, []);
-
-  useEffect(() => {});
+  const { filter, id, list } = item;
 
   const handleAppendOnClick = () => {
-    if (!searchParams.getAll(item.filter).includes(String(item.id))) {
-      searchParams.append(item.filter, item.id);
+    if (!searchParams.getAll(filter).includes(String(id))) {
+      searchParams.append(filter, id);
       setSearchParams(searchParams);
     } else {
       const newArr = searchParams
-        .getAll(item.filter)
-        .filter(el => el !== String(item.id));
-      searchParams.delete(item.filter);
+        .getAll(filter)
+        .filter(el => el !== String(id));
+      searchParams.delete(filter);
       newArr.forEach(el => {
-        searchParams.append(item.filter, el);
+        searchParams.append(filter, el);
       });
       setSearchParams(searchParams);
     }
@@ -43,7 +34,7 @@ const Drop = ({ item }) => {
       }}
     >
       {isChecked ? <CheckedImg /> : <CheckImg />}
-      {item.list}
+      {list}
     </div>
   );
 };
