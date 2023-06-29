@@ -63,7 +63,7 @@ export const InputBox = styled.div`
 `;
 
 export const ButtonBox = styled.div`
-  margin: 50px 455px 60px 0px;
+  margin: 50px 0px 60px 500px;
 `;
 
 export const Click = styled.button`
