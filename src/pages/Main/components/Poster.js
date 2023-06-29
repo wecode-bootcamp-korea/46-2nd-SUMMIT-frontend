@@ -14,6 +14,9 @@ export const PosterImg = styled.img`
   height: 400px;
   border-radius: 20px;
   background-image: ${props => `url(${props.src})`};
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const ShowInfo = styled.div`

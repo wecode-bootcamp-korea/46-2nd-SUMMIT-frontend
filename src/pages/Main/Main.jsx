@@ -10,7 +10,7 @@ import styled from 'styled-components';
 const Main = () => {
   return (
     <Wrap>
-      <Carousel />
+      {/* <Carousel /> */}
       <Categorytransfer />
       <Bestonboard />
       <Bestonreview />

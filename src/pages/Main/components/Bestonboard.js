@@ -23,7 +23,7 @@ const Bestonboard = () => {
 
   return (
     <Container>
-      <SectionTitle>따끈따끈 신상이야</SectionTitle>
+      <SectionTitle>뮤지컬 처음본다? 이건 꼭 보세요!</SectionTitle>
       <MusicalCardContainer>
         <CardListWrap>
           {limitBestonboard.map(show => (

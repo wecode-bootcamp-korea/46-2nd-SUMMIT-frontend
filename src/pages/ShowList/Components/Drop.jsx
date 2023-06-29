@@ -27,6 +27,7 @@ const Drop = ({ item }) => {
       setSearchParams(searchParams);
     }
   };
+  console.log('hi');
 
   const handleCheckedChange = () => {
     setIsChecked(prev => !prev);

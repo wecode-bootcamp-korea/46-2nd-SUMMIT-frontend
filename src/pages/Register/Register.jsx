@@ -28,13 +28,7 @@ const Register = () => {
         startDate: handleDateForm(startDate),
         endDate: handleDateForm(endDate),
       }),
-    })
-      .then(res => res.json())
-      .then(res => {
-        if (res.message === 'Create Complete') {
-          navigate('/');
-        }
-      });
+    }).then(res => res.json());
   };
 
   const alertSubmit = () => {
@@ -51,6 +45,7 @@ const Register = () => {
             message="작품 등록이 완료되었습니다."
             onClose={() => {
               setIsModalOpen(false);
+              navigate('/');
             }}
           />
         </div>

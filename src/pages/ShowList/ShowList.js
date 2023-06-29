@@ -37,11 +37,11 @@ export const DropButton = styled.div`
   border: 1px solid white;
 
   &:hover {
-    background: ${lighten(0.1, '#dfdfdf')};
+    background: ${darken(0.1, '#333333')};
     cursor: pointer;
   }
   &:active {
-    background: ${darken(0.1, '#dfdfdf')};
+    background: ${darken(0.1, '#333333')};
   }
 `;
 
@@ -64,12 +64,11 @@ export const DropItem = styled.li`
   font-size: 16px;
   color: white;
   background-color: #252526;
-  box-shadow: 1px 1px 1px 1px gray;
   &:hover {
-    background: ${lighten(0.1, '#dfdfdf')};
+    background: ${darken(0.1, '#333333')};
   }
   &:active {
-    background: ${darken(0.1, '#dfdfdf')};
+    background: ${darken(0.1, '#333333')};
   }
 `;
 
