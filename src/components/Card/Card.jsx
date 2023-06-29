@@ -8,6 +8,7 @@ import {
   LikeImg,
   ShowInfo,
   CardFunction,
+  ShowTextFile,
 } from './Card';
 import { WishListAtom } from '../../Recoil/WishListAtom';
 import { useRecoilState } from 'recoil';
@@ -91,7 +92,7 @@ const Card = ({ show, rerender }) => {
         <LikeImg wishId={!isWished} onClick={() => handleLike(wishId)} />
       </CardFunction>
       <ShowInfo>
-        {title}
+        <ShowTextFile>{title}</ShowTextFile>
         <br />
         {theaterNames}
         <br />
