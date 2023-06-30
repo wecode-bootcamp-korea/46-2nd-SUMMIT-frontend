@@ -32,7 +32,7 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  /* margin-top: 40px; */
+  margin-top: 40px;
   margin-bottom: 100px;
   flex-direction: row;
   text-align: center;
