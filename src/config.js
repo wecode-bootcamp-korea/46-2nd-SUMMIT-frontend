@@ -1,4 +1,4 @@
-export const BASE_URL = 'http://10.58.52.162:8072';
+export const BASE_URL = 'http://13.209.67.115:5010';
 
 export const APIS = {
   login: `${BASE_URL}/users/kakao-login`,

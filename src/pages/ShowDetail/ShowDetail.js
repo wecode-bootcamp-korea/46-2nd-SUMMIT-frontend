@@ -197,7 +197,7 @@ export const WishImg = styled.div`
   transform: translate(-50%, -50%);
   background: no-repeat;
   background-image: ${props =>
-    props.clicked
+    props.filtered
       ? `url("/image/clickedHeart.png")`
       : `url("/image/unclickedHeart.png")`};
 `;

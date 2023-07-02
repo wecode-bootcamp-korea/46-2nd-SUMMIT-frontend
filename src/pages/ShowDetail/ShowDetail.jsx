@@ -37,7 +37,9 @@ const ShowDetail = () => {
   const { showId } = useParams();
   const token = localStorage.getItem('token');
   const [wishListData, setWishListData] = useRecoilState(WishListAtom);
-  const [isClicked, setIsClicked] = useState(true);
+  const wishShowIds = wishListData.map(item => item.show_id);
+  const filteredShowId = wishShowIds.includes(showDetail.showId);
+  const [showIdFilter, setShowIdFilter] = useState(filteredShowId);
 
   const renderShowDetail = () => {
     fetch(`${APIS.showList}/${showId}`, {
@@ -48,17 +50,42 @@ const ShowDetail = () => {
       },
     })
       .then(res => res.json())
-      .then(data => setShowDetail(data.showDetail[0]));
+      .then(data => {
+        setShowDetail(data.showDetail[0]);
+        setShowIdFilter(filteredShowId);
+      });
   };
 
   useEffect(() => {
     renderShowDetail();
-  }, []);
+  }, [filteredShowId]);
 
   const handleLike = id => {
-    setIsClicked(prev => !prev);
-    !isClicked
-      ? fetch(`${APIS.wish}?wishId=${id}`, {
+    setShowIdFilter(prev => !prev);
+    !showIdFilter
+      ? fetch(`${APIS.wish}/create`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            Authorization: token,
+          },
+          body: JSON.stringify({ showId: showId }),
+        }).then(res => {
+          res.json();
+          fetch(`${APIS.wish}`, {
+            headers: {
+              'Content-Type': 'application/json;charset=utf-8',
+              Authorization: token,
+            },
+          })
+            .then(res => res.json())
+            .then(data => {
+              if (data.wishData !== undefined) {
+                setWishListData(data.wishData.result);
+              }
+            });
+        })
+      : fetch(`${APIS.wish}?wishId=${id}`, {
           method: 'DELETE',
           headers: {
             'Content-Type': 'application/json;charset=utf-8',
@@ -75,36 +102,16 @@ const ShowDetail = () => {
               .then(res => res.json())
               .then(data => {
                 if (data.wishData !== undefined) {
+                  console.log(data.wishData);
                   setWishListData(data.wishData.result);
                 }
               });
           }
-        })
-      : fetch(`${APIS.wish}/create`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json;charset=utf-8',
-            Authorization: token,
-          },
-          body: JSON.stringify({ showId: showId }),
-        }).then(res => {
-          res.json();
-          renderShowDetail();
-          fetch(`${APIS.wish}`, {
-            headers: {
-              'Content-Type': 'application/json;charset=utf-8',
-              Authorization: token,
-            },
-          })
-            .then(res => res.json())
-            .then(data => {
-              if (data.wishData !== undefined) {
-                setWishListData(data.wishData.result);
-              }
-            });
         });
   };
+
   const isData = Object.keys(showDetail).length !== 0;
+
   if (!isData) {
     return null;
   }
@@ -224,7 +231,7 @@ const ShowDetail = () => {
           <BtnWrap>
             <LikeBtn>
               <WishImg
-                clicked={!isClicked}
+                filtered={showIdFilter}
                 onClick={() => {
                   handleLike(showDetail.wishId);
                 }}
