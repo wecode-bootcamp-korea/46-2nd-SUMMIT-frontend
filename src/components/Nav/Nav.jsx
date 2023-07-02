@@ -85,7 +85,7 @@ const Nav = () => {
     }
   };
 
-  const handleDelete = id => {
+  const handleDelete = (id, showId) => {
     fetch(`${APIS.wish}?wishId=${id}`, {
       method: 'DELETE',
       headers: {
@@ -105,6 +105,19 @@ const Nav = () => {
           .then(data => {
             getWishItem();
             setShowList(data.shows);
+          })
+          .then(() => {
+            fetch(`${APIS.showList}/${showId}`, {
+              method: 'GET',
+              headers: {
+                'Content-Type': 'application/json;charset=utf-8',
+                Authorization: token,
+              },
+            })
+              .then(res => res.json())
+              .then(data => {
+                setShowDetail(data.showDetail[0]);
+              });
           });
       }
     });
@@ -191,19 +204,13 @@ const Nav = () => {
             wishListData.map(item => (
               <div key={item.id}>
                 <WishItem>
-                  <WishImg
-                    src={item.image_url}
-                    alt="wishListItemPoster"
-                    onClick={() => {
-                      navigate(`showDetail/${item.show_id}`);
-                    }}
-                  />
+                  <WishImg src={item.image_url} alt="wishListItemPoster" />
                   {item.title}
                   <Button
                     size="nav"
                     text="삭제하기"
                     onClick={() => {
-                      handleDelete(item.wishId);
+                      handleDelete(item.id, item.show_id);
                       setShowSecondModal(false);
                     }}
                   />
